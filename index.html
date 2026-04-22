@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tienda oficial de Lucho Díaz - Productos exclusivos inspirados en el talento del futbolista colombiano Luis Díaz. Jerseys, calzado deportivo y accesorios.">
+    <meta name="keywords" content="Lucho Díaz, Luis Díaz, Liverpool FC, Colombia, fútbol, jerseys, calzado deportivo, tienda online">
+    <meta name="author" content="Lucho Díaz Shop">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Lucho Díaz Shop - Tienda Oficial">
+    <meta property="og:description" content="Descubre la colección exclusiva de productos inspirados en Luis Díaz. Envíos a todo Colombia.">
+    <meta property="og:image" content="https://luchodiaz.shop/images/logo.png">
+    <meta property="og:url" content="https://luchodiaz.shop">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Lucho Díaz Shop | Tienda Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <div id="loader"><div class="spinner"></div></div>
+
+    <header class="navbar">
+        <a href="#" class="logo">LUCHO<span>DÍAZ</span></a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#tienda">Tienda</a></li>
+                <li><a href="#" data-open-modal="size-guide">Tallas</a></li>
+                <li><a href="#tienda">Colección</a></li>
+            </ul>
+        </nav>
+        <button class="cart-trigger" id="open-cart">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="badge" id="cart-count">0</span>
+        </button>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="cart-drawer" id="cart-modal">
+        <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h2 style="font-weight: 900;">TU BOLSA</h2>
+            <button id="close-cart" style="background:none; border:none; font-size: 1.5rem; cursor:pointer;">×</button>
+        </div>
+        <div id="cart-items"></div>
+        <div style="border-top: 2px solid var(--gray-100); padding-top: 1.5rem;">
+            <div style="display:flex; justify-content: space-between; font-weight:700; font-size: 1.3rem;">
+                <span>Total:</span>
+                <span style="color: var(--primary);">COP $<span id="total-price">0</span></span>
+            </div>
+            <button id="checkout-btn" class="btn-add" style="margin-top: 1.5rem; background: var(--primary); padding: 15px;">PAGAR AHORA</button>
+        </div>
+    </aside>
+
+    <main>
+        <section class="hero">
+            <canvas id="hero-canvas" aria-hidden="true"></canvas>
+            <h1>LA MAGIA DEL 7</h1>
+            <p>Descubre la colección exclusiva diseñada para los que viven el fútbol con la pasión del Guajiro.</p>
+            <a href="#tienda" class="btn-add" style="width: auto; padding: 15px 50px; text-decoration: none; border-radius: 50px;">COMPRAR AHORA</a>
+        </section>
+
+        <section id="tienda" class="container">
+            <canvas id="particles-canvas" aria-hidden="true"></canvas>
+            <h2 class="section-title">NUESTRA COLECCIÓN</h2>
+            
+            <!-- Barra de búsqueda y ordenamiento -->
+            <div class="search-sort-bar">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Buscar productos..." class="search-input">
+                </div>
+                <select id="sort-select" class="sort-select">
+                    <option value="name-asc">Nombre A-Z</option>
+                    <option value="name-desc">Nombre Z-A</option>
+                    <option value="price-asc">Precio menor a mayor</option>
+                    <option value="price-desc">Precio mayor a menor</option>
+                </select>
+            </div>
+            
+            <!-- Filtros de categoría -->
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">Todos los Productos</button>
+                <button class="filter-btn" data-category="calzado">Calzado Deportivo</button>
+                <button class="filter-btn" data-category="ropa">Ropa & Accesorios</button>
+            </div>
+            
+            <div class="products-grid" id="products-container">
+                <!-- Productos se renderizan dinámicamente desde shop.js -->
+            </div>
+            <div id="products-count" style="text-align: center; margin-top: 20px; opacity: 0.7; font-size: 0.9rem;"></div>
+        </section>
+    </main>
+
+    <div class="product-modal" id="product-modal">
+        <div class="modal-content">
+            <button id="close-modal" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; z-index:10">×</button>
+            <div class="modal-img"><img src="" id="modal-img-target"></div>
+            <div class="modal-details">
+                <span class="modal-category">Exclusivo</span>
+                <h2 id="modal-name">Producto</h2>
+                <p id="modal-desc" style="margin: 0.5rem 0; color: #666; font-size: 0.85rem;">Calidad élite para los verdaderos fans.</p>
+                
+                <div class="modal-features">
+                    <div class="feature-item"><i class="fa-solid fa-check"></i> Original</div>
+                    <div class="feature-item"><i class="fa-solid fa-truck"></i> Envío Nacional</div>
+                </div>
+
+                <h3 style="font-size: 0.75rem; text-transform: uppercase;">Selecciona Talla:</h3>
+                <div class="size-selector" id="modal-sizes"></div>
+
+                <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem;">
+                    <span class="price" id="modal-price" style="font-size: 2rem; margin: 0;">COP $0</span>
+                    <span style="text-decoration: line-through; color: #bbb; font-size: 0.9rem;">COP $480.000</span>
+                </div>
+
+                <div class="qty-selector">
+                    <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                    <input type="number" value="1" id="modal-qty" class="qty-input" readonly>
+                    <button class="qty-btn" onclick="updateQty(1)">+</button>
+                </div>
+
+                <button class="btn-add" id="modal-add-to-cart">AÑADIR AL CARRITO</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-modal" id="checkout-modal">
+        <div class="modal-content" style="grid-template-columns: 1fr;">
+            <button id="close-checkout" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; z-index:10">×</button>
+            <div class="modal-details" style="max-width: 600px; margin: auto; padding: 2.5rem;">
+                <h2 style="text-align: center; font-weight: 900; margin-bottom: 0.5rem;">DATOS DE ENVÍO</h2>
+                <p style="text-align: center; font-size: 0.85rem; color: #666; margin-bottom: 2rem;">Completa tus datos para procesar el pedido vía WhatsApp.</p>
+                
+                <form id="checkout-form">
+                    <div class="checkout-grid">
+                        <div class="checkout-form-group">
+                            <label class="checkout-label">Nombre Completo</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="cust-name" class="checkout-input" placeholder="Ej: Juan Pérez" required autofocus>
+                            </div>
+                        </div>
+                        <div class="checkout-form-group">
+                            <label class="checkout-label">WhatsApp (Celular)</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="cust-phone" class="checkout-input" placeholder="3001234567" required maxlength="10" inputmode="numeric" pattern="[0-9]{10}" title="Ingresa 10 dígitos sin espacios">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout-form-group">
+                        <label class="checkout-label">Correo Electrónico (opcional)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="cust-email" class="checkout-input" placeholder="ejemplo@correo.com">
+                        </div>
+                    </div>
+
+                    <div class="checkout-form-group">
+                        <label class="checkout-label">Dirección de Entrega</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <input type="text" id="cust-address" class="checkout-input" placeholder="Calle, Número, Barrio" required>
+                        </div>
+                    </div>
+
+                    <div class="checkout-grid">
+                        <div class="checkout-form-group">
+                            <label class="checkout-label">Ciudad</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-city"></i>
+                                <input type="text" id="cust-city" class="checkout-input" placeholder="Ej: Barranquilla" required>
+                            </div>
+                        </div>
+                        <div class="checkout-form-group">
+                            <label class="checkout-label">Método de Pago</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-credit-card"></i>
+                                <select id="cust-payment" class="checkout-input" style="padding-left: 35px;" required>
+                                    <option value="Pago contra entrega">Pago contra entrega</option>
+                                    <option value="Transferencia Nequi/Bancolombia">Transferencia Nequi/Bancolombia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout-form-group">
+                        <label class="checkout-label">Notas del Pedido (opcional)</label>
+                        <textarea id="cust-notes" class="checkout-input checkout-textarea" placeholder="Ej: Dejar en portería si no estoy presente"></textarea>
+                    </div>
+
+                    <div style="background: #fff5f6; padding: 1.2rem; border-radius: 15px; border: 1px dashed var(--primary); margin-top: 1rem;">
+                        <div style="display:flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 600; font-size: 1rem;">Total del Pedido:</span>
+                            <span style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">COP $<span id="checkout-total-price">0</span></span>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-order" class="btn-add" style="margin-top: 2rem; background: #25d366; font-size: 1.1rem; padding: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 50px;">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> CONFIRMAR POR WHATSAPP
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-modal" id="size-guide-modal">
+        <div class="modal-content" style="grid-template-columns: 1fr; max-width: 700px;">
+            <button id="close-size-guide" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; z-index:10">×</button>
+            <div class="modal-details">
+                <span class="modal-category">Guía de Tallas</span>
+                <h2>Tallas de Pantalón, Camisa y Calzado</h2>
+                <p>Elige tu talla ideal con nuestra guía rápida para tallas de ropa y calzado.</p>
+                <div class="modal-list">
+                    <div>
+                        <h3>Pantalón</h3>
+                        <ul>
+                            <li>S: 72-76 cm</li>
+                            <li>M: 77-82 cm</li>
+                            <li>L: 83-88 cm</li>
+                            <li>XL: 89-94 cm</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Camisa / Jersey</h3>
+                        <ul>
+                            <li>S: Pecho 88-94 cm</li>
+                            <li>M: Pecho 95-101 cm</li>
+                            <li>L: Pecho 102-108 cm</li>
+                            <li>XL: Pecho 109-115 cm</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Calzado</h3>
+                        <ul>
+                            <li>38</li>
+                            <li>39</li>
+                            <li>40</li>
+                            <li>41</li>
+                            <li>42</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-modal" id="faq-modal">
+        <div class="modal-content" style="grid-template-columns: 1fr; max-width: 700px;">
+            <button id="close-faq" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; z-index:10">×</button>
+            <div class="modal-details">
+                <span class="modal-category">Preguntas Frecuentes</span>
+                <h2>Resuelve tus dudas</h2>
+                <div class="faq-item">
+                    <strong>¿Cómo funciona el envío?</strong>
+                    <p>Realizamos envíos a todo Colombia en 3-5 días hábiles, con seguimiento desde que confirmas tu pedido.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>¿Puedo cambiar mi talla?</strong>
+                    <p>Si tu talla no queda perfecta, te ayudamos con cambio o devolución según disponibilidad.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>¿Cuál es el método de pago?</strong>
+                    <p>Aceptamos pago contra entrega y transferencias por Nequi o Bancolombia.</p>
+                </div>
+                <form id="faq-form" class="faq-form">
+                    <h3>¿Tienes otra pregunta?</h3>
+                    <label>Nombre</label>
+                    <input type="text" id="faq-name" placeholder="Tu nombre" required>
+                    <label>Correo</label>
+                    <input type="email" id="faq-email" placeholder="ejemplo@correo.com" required>
+                    <label>Pregunta</label>
+                    <textarea id="faq-question" placeholder="Escribe tu pregunta aquí" required></textarea>
+                    <button type="submit" class="btn-add" style="margin-top: 1rem; width: 100%;">Enviar pregunta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/573044359009" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <!-- Canvas settings control -->
+    <button id="canvas-settings-btn" aria-expanded="false" aria-label="Ajustes de animación" class="canvas-settings-btn">
+        <i class="fa-solid fa-sliders"></i>
+    </button>
+    <div id="canvas-settings-panel" class="canvas-settings-panel" aria-hidden="true">
+        <h4>Animaciones</h4>
+        <div class="cs-row"><label><input type="checkbox" id="toggle-hero" checked> Hero</label></div>
+        <div class="cs-row"><label><input type="checkbox" id="toggle-particles" checked> Partículas</label></div>
+        <div class="cs-row"><label>Intensidad partículas</label>
+            <input type="range" id="particles-density" min="20" max="140" value="80"></div>
+        <div class="cs-row presets-row">
+            <label>Presets</label>
+            <div class="presets">
+                <button type="button" class="preset-btn" data-preset="light">Ligero</button>
+                <button type="button" class="preset-btn" data-preset="balanced">Equilibrado</button>
+                <button type="button" class="preset-btn" data-preset="max">Máximo</button>
+            </div>
+        </div>
+        <div class="cs-row"><button id="reset-canvas-settings" class="btn-add">Restablecer</button></div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <a href="#" class="logo">LUCHO<span>DÍAZ</span></a>
+                <p style="margin-top:1rem; opacity:0.6; font-size:0.9rem">La tienda oficial inspirada en el talento de Luis Díaz. Envíos a todo el país.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Explorar</h4>
+                <ul>
+                    <li><a href="#tienda">Colección 2026</a></li>
+                    <li><a href="#" class="footer-link-action" data-open-modal="size-guide">Guía de Tallas</a></li>
+                    <li><a href="#" class="footer-link-action" data-open-modal="faq">Preguntas Frecuentes</a></li>
+                    <li><a href="#tienda">Envíos y Devoluciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> ventas@luchodiaz.shop</li>
+                    <li><i class="fa-solid fa-phone"></i> +57 304 435 9009</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Barranquilla, COL</li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.1); opacity:0.4; font-size:0.75rem;">
+            © 2026 Lucho Díaz Shop. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="data/products.js"></script>
+    <script src="assets/js/shop.js"></script>
+    <script src="assets/js/canvas-animations.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
