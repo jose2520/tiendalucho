@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tienda oficial de Lucho Díaz - Productos exclusivos inspirados en el talento del futbolista colombiano Luis Díaz. Jerseys, calzado deportivo y accesorios.">
-    <meta name="keywords" content="Lucho Díaz, Luis Díaz, Liverpool FC, Colombia, fútbol, jerseys, calzado deportivo, tienda online">
-    <meta name="author" content="Lucho Díaz Shop">
+    <meta name="description" content="LuchoDIAZ Shop - tienda online de productos deportivos, jerseys, calzado y accesorios para aficionados al fútbol.">
+    <meta name="keywords" content="LuchoDIAZ, deportes, fútbol, jerseys, calzado deportivo, tienda online, accesorios deportivos">
+    <meta name="author" content="LuchoDIAZ Shop">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Lucho Díaz Shop - Tienda Oficial">
-    <meta property="og:description" content="Descubre la colección exclusiva de productos inspirados en Luis Díaz. Envíos a todo Colombia.">
-    <meta property="og:image" content="https://luchodiaz.shop/images/logo.png">
-    <meta property="og:url" content="https://luchodiaz.shop">
+    <meta property="og:title" content="LuchoDIAZ Shop - Tienda Oficial">
+    <meta property="og:description" content="Descubre la colección exclusiva de productos deportivos de LuchoDIAZ Shop. Envíos a todo Colombia.">
     <meta name="twitter:card" content="summary_large_image">
-    <title>Lucho Díaz Shop | Tienda Oficial</title>
+    <title>LuchoDIAZ Shop | Tienda Oficial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -22,7 +20,7 @@
     <div id="loader"><div class="spinner"></div></div>
 
     <header class="navbar">
-        <a href="#" class="logo">LUCHO<span>DÍAZ</span></a>
+        <a href="#" class="logo">LUCHODIAZ</a>
         <nav>
             <ul class="nav-links">
                 <li><a href="#tienda">Tienda</a></li>
@@ -39,15 +37,15 @@
     <div class="overlay" id="overlay"></div>
 
     <aside class="cart-drawer" id="cart-modal">
-        <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-            <h2 style="font-weight: 900;">TU BOLSA</h2>
-            <button id="close-cart" style="background:none; border:none; font-size: 1.5rem; cursor:pointer;">×</button>
+        <div class="cart-header">
+            <h2>TU BOLSA</h2>
+            <button id="close-cart" class="cart-close-btn">×</button>
         </div>
         <div id="cart-items"></div>
-        <div style="border-top: 2px solid var(--gray-100); padding-top: 1.5rem;">
-            <div style="display:flex; justify-content: space-between; font-weight:700; font-size: 1.3rem;">
+        <div class="cart-total">
+            <div class="cart-total-row">
                 <span>Total:</span>
-                <span style="color: var(--primary);">COP $<span id="total-price">0</span></span>
+                <span class="price">COP $<span id="total-price">0</span></span>
             </div>
             <button id="checkout-btn" class="btn-add" style="margin-top: 1.5rem; background: var(--primary); padding: 15px;">PAGAR AHORA</button>
         </div>
@@ -56,8 +54,8 @@
     <main>
         <section class="hero">
             <canvas id="hero-canvas" aria-hidden="true"></canvas>
-            <h1>LA MAGIA DEL 7</h1>
-            <p>Descubre la colección exclusiva diseñada para los que viven el fútbol con la pasión del Guajiro.</p>
+            <h1>VIVE LA PASIÓN DEL FÚTBOL</h1>
+            <p>Descubre la colección exclusiva diseñada para los aficionados del deporte rey.</p>
             <a href="#tienda" class="btn-add" style="width: auto; padding: 15px 50px; text-decoration: none; border-radius: 50px;">COMPRAR AHORA</a>
         </section>
 
@@ -95,24 +93,24 @@
 
     <div class="product-modal" id="product-modal">
         <div class="modal-content">
-            <button id="close-modal" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; z-index:10">×</button>
+            <button id="close-modal" class="modal-close-btn">×</button>
             <div class="modal-img"><img src="" id="modal-img-target"></div>
             <div class="modal-details">
                 <span class="modal-category">Exclusivo</span>
                 <h2 id="modal-name">Producto</h2>
-                <p id="modal-desc" style="margin: 0.5rem 0; color: #666; font-size: 0.85rem;">Calidad élite para los verdaderos fans.</p>
+                <p id="modal-desc" class="modal-desc">Calidad élite para los verdaderos fans.</p>
                 
                 <div class="modal-features">
                     <div class="feature-item"><i class="fa-solid fa-check"></i> Original</div>
                     <div class="feature-item"><i class="fa-solid fa-truck"></i> Envío Nacional</div>
                 </div>
 
-                <h3 style="font-size: 0.75rem; text-transform: uppercase;">Selecciona Talla:</h3>
+                <h3 class="modal-size-title">Selecciona Talla:</h3>
                 <div class="size-selector" id="modal-sizes"></div>
 
-                <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem;">
-                    <span class="price" id="modal-price" style="font-size: 2rem; margin: 0;">COP $0</span>
-                    <span style="text-decoration: line-through; color: #bbb; font-size: 0.9rem;">COP $480.000</span>
+                <div class="modal-price-section">
+                    <span class="price" id="modal-price">COP $0</span>
+                    <span class="old-price">COP $480.000</span>
                 </div>
 
                 <div class="qty-selector">
@@ -127,11 +125,11 @@
     </div>
 
     <div class="product-modal" id="checkout-modal">
-        <div class="modal-content" style="grid-template-columns: 1fr;">
-            <button id="close-checkout" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; z-index:10">×</button>
-            <div class="modal-details" style="max-width: 600px; margin: auto; padding: 2.5rem;">
-                <h2 style="text-align: center; font-weight: 900; margin-bottom: 0.5rem;">DATOS DE ENVÍO</h2>
-                <p style="text-align: center; font-size: 0.85rem; color: #666; margin-bottom: 2rem;">Completa tus datos para procesar el pedido vía WhatsApp.</p>
+        <div class="modal-content checkout-modal-content">
+            <button id="close-checkout" class="modal-close-btn">×</button>
+            <div class="modal-details checkout-modal-details">
+                <h2 class="checkout-title">DATOS DE ENVÍO</h2>
+                <p class="checkout-subtitle">Completa tus datos para procesar el pedido vía WhatsApp.</p>
                 
                 <form id="checkout-form">
                     <div class="checkout-grid">
@@ -192,10 +190,10 @@
                         <textarea id="cust-notes" class="checkout-input checkout-textarea" placeholder="Ej: Dejar en portería si no estoy presente"></textarea>
                     </div>
 
-                    <div style="background: #fff5f6; padding: 1.2rem; border-radius: 15px; border: 1px dashed var(--primary); margin-top: 1rem;">
-                        <div style="display:flex; justify-content: space-between; align-items: center;">
-                            <span style="font-weight: 600; font-size: 1rem;">Total del Pedido:</span>
-                            <span style="font-weight: 900; font-size: 1.5rem; color: var(--primary);">COP $<span id="checkout-total-price">0</span></span>
+                    <div class="checkout-total-box">
+                        <div class="checkout-total-row">
+                            <span class="label">Total del Pedido:</span>
+                            <span class="price">COP $<span id="checkout-total-price">0</span></span>
                         </div>
                     </div>
 
@@ -306,8 +304,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <a href="#" class="logo">LUCHO<span>DÍAZ</span></a>
-                <p style="margin-top:1rem; opacity:0.6; font-size:0.9rem">La tienda oficial inspirada en el talento de Luis Díaz. Envíos a todo el país.</p>
+                <a href="#" class="logo">LUCHODIAZ</a>
+                <p style="margin-top:1rem; opacity:0.6; font-size:0.9rem">Tienda de artículos deportivos y accesorios para aficionados. Envíos a todo el país.</p>
             </div>
             <div class="footer-section">
                 <h4>Explorar</h4>
@@ -321,14 +319,14 @@
             <div class="footer-section">
                 <h4>Contacto</h4>
                 <ul>
-                    <li><i class="fa-solid fa-envelope"></i> ventas@luchodiaz.shop</li>
+                    <li><i class="fa-solid fa-envelope"></i> ventas@luchoDIAZ.shop</li>
                     <li><i class="fa-solid fa-phone"></i> +57 304 435 9009</li>
                     <li><i class="fa-solid fa-location-dot"></i> Barranquilla, COL</li>
                 </ul>
             </div>
         </div>
         <div style="text-align:center; margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.1); opacity:0.4; font-size:0.75rem;">
-            © 2026 Lucho Díaz Shop. All Rights Reserved.
+            © 2026 LuchoDIAZ Shop. All Rights Reserved.
         </div>
     </footer>
 

@@ -163,3 +163,94 @@
     color: #555;
     line-height: var(--line-height-relaxed);
 }
+
+/* Estilos específicos para modal de producto */
+.modal-price-section {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.modal-price-section .price {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.modal-price-section .old-price {
+    text-decoration: line-through;
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.modal-desc {
+    margin: 0.5rem 0;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.modal-size-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+/* Botones de cerrar modal */
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Checkout modal específico */
+.checkout-modal-content {
+    grid-template-columns: 1fr;
+}
+
+.checkout-modal-details {
+    max-width: 600px;
+    margin: auto;
+    padding: 2.5rem;
+}
+
+.checkout-title {
+    text-align: center;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+}
+
+.checkout-subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.checkout-total-box {
+    background: #fff5f6;
+    padding: 1.2rem;
+    border-radius: 15px;
+    border: 1px dashed var(--primary);
+    margin-top: 1rem;
+}
+
+.checkout-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-total-row .label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.checkout-total-row .price {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--primary);
+}

@@ -1,6 +1,6 @@
-# Tienda Lucho Díaz Shop
+# LuchoDIAZ Shop
 
-Tienda oficial de productos inspirados en Luis Díaz, el talentoso futbolista colombiano.
+Tienda online de productos deportivos, accesorios y prendas para los aficionados del fútbol.
 
 [![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
 [![Versión](https://img.shields.io/badge/Versión-1.0-blue.svg)]()
@@ -8,7 +8,7 @@ Tienda oficial de productos inspirados en Luis Díaz, el talentoso futbolista co
 
 ## 🚀 Resumen del proyecto
 
-Este proyecto es una tienda en línea completamente funcional y modular, dedicada a productos inspirados en Luis Díaz. Ha sido refactorizado a una estructura modular y escalable, con separación clara entre estilos, lógica y datos.
+Este proyecto es una tienda en línea completamente funcional y modular, dedicada a productos deportivos y accesorios de fútbol. Ha sido refactorizado a una estructura modular y escalable, con separación clara entre estilos, lógica y datos.
 
 - **CSS modularizado** en `assets/css/` con variables, componentes, layouts y utilidades.
 - **JavaScript dividido** en utilidades (`assets/js/utils/`), módulos de negocio (`assets/js/modules/`) y archivos de configuración.

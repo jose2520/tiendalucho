@@ -118,6 +118,14 @@ const Cart = {
     },
 
     /**
+     * Obtiene los items del carrito
+     * @returns {Array} Array de items del carrito
+     */
+    getItems: function() {
+        return cart;
+    },
+
+    /**
      * Actualiza la interfaz del carrito
      */
     updateUI: function() {

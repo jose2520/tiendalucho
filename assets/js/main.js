@@ -6,8 +6,20 @@
  */
 
 /**
- * EVENTOS GLOBALES A LA CARGA DEL DOM
+ * ACTUALIZA LA CANTIDAD EN EL MODAL DE PRODUCTO
+ * @param {number} delta - Cambio en cantidad (+1 o -1)
  */
+function updateQty(delta) {
+    const qtyInput = document.getElementById('modal-qty');
+    if (!qtyInput) return;
+
+    let currentQty = parseInt(qtyInput.value) || 1;
+    currentQty += delta;
+
+    if (currentQty < 1) currentQty = 1;
+
+    qtyInput.value = currentQty;
+}
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializar loader
     const loader = document.getElementById('loader');
@@ -37,6 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Configurar eventos de FAQ
     setupFAQEvents();
+
+    // Configurar eventos de data-open-modal
+    setupDataOpenModalEvents();
+
+    // Inicializar lazy loading de imágenes
+    initLazyLoading();
 });
 
 /**
@@ -131,7 +149,7 @@ function handleCheckoutSubmit() {
     const total = Cart.getTotal();
     
     let productList = "";
-    cart.forEach((item, index) => {
+    Cart.getItems().forEach((item, index) => {
         productList += `${index + 1}. *${item.name}* [Talla: ${item.size}] x${item.quantity}\n`;
     });
 
@@ -148,7 +166,7 @@ function handleCheckoutSubmit() {
         `------------------------------------------\n\n` +
         `📦 *PRODUCTOS:*\n${productList}\n` +
         `💰 *TOTAL: COP $${total.toLocaleString()}*\n\n` +
-        `🚀 _Enviado desde Lucho Díaz Shop_`;
+        `🚀 _Enviado desde LuchoDIAZ Shop_`;
 
     const whatsappUrl = `${CONFIG.whatsapp.baseUrl}${CONFIG.whatsapp.phoneNumber}?text=${encodeURIComponent(message)}`;
 
@@ -198,6 +216,33 @@ function setupFAQEvents() {
             Notification.success('Gracias por tu pregunta. Te responderemos pronto.');
             Modals.close('#faq-modal');
             faqForm.reset();
+        });
+    }
+}
+
+/**
+ * INICIALIZA LAZY LOADING PARA IMÁGENES
+ */
+function initLazyLoading() {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback para navegadores sin IntersectionObserver
+        images.forEach(img => {
+            img.src = img.dataset.src;
         });
     }
 }

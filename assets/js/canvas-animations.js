@@ -229,7 +229,7 @@
       const particlesInstance = initParticlesCanvas();
 
       // Settings persistence
-      const KEY = 'luchoCanvasSettings_v1';
+      const KEY = 'luchoDIAZCanvasSettings_v1';
       const defaultSettings = { hero: true, particles: true, particlesDensity: 80 };
       function loadSettings() {
         try { return Object.assign({}, defaultSettings, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch { return defaultSettings; }
@@ -277,7 +277,7 @@
       // Apply initially
       applySettings();
       // Return instances for debugging if needed
-      window._luchoCanvas = { heroInstance, particlesInstance, settings };
+      window._luchoDIAZCanvas = { heroInstance, particlesInstance, settings };
     } catch (err) {
       // fail silently - don't break main app
       console.error('Canvas animations failed to initialize:', err);

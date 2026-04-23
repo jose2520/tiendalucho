@@ -1,6 +1,6 @@
 /**
  * BASE DE DATOS LOCAL DE PRODUCTOS
- * Tienda Lucho Díaz Shop
+ * LuchoDIAZ Shop
  */
 
 const products = [

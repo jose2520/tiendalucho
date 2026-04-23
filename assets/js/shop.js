@@ -1,6 +1,6 @@
 /**
  * LÓGICA DEL CARRITO Y PRODUCTOS
- * Tienda Lucho Díaz Shop
+ * LuchoDIAZ Shop
  */
 
 // --- CONFIGURACIÓN DE PRODUCTOS ---
@@ -38,12 +38,12 @@ function getDefaultSize(category) {
 }
 
 function saveCart() {
-    localStorage.setItem('luchoCart', JSON.stringify(cart));
+    localStorage.setItem('luchoDIAZCart', JSON.stringify(cart));
 }
 
 function loadCart() {
     try {
-        cart = JSON.parse(localStorage.getItem('luchoCart')) || [];
+        cart = JSON.parse(localStorage.getItem('luchoDIAZCart')) || [];
         cart = cart.map(item => ({
             ...item,
             quantity: item.quantity && item.quantity > 0 ? item.quantity : 1

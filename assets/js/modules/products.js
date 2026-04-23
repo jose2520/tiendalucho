@@ -81,7 +81,7 @@ const Products = {
         
         article.innerHTML = `
             <div class="card-img-wrapper">
-                <img src="${product.image}" alt="${product.name}">
+                <img data-src="${product.image}" alt="${product.name}" loading="lazy">
             </div>
             <h3>${product.name}</h3>
             <span class="price">COP $${product.price.toLocaleString()}</span>

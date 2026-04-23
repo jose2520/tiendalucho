@@ -13,8 +13,8 @@ const CONFIG = {
     
     // Claves de localStorage
     storage: {
-        CART_KEY: 'luchoCart',
-        CANVAS_SETTINGS_KEY: 'luchoCanvasSettings_v1'
+        CART_KEY: 'luchoDIAZCart',
+        CANVAS_SETTINGS_KEY: 'luchoDIAZCanvasSettings_v1'
     },
     
     // Moneda y formato
