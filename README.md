@@ -1,180 +1,127 @@
 # Tienda Lucho Díaz Shop
 
-Tienda oficial de productos inspirados en Luis Díaz, con una versión modularizada del frontend para facilitar mantenimiento y escalabilidad.
+Tienda oficial de productos inspirados en Luis Díaz, el talentoso futbolista colombiano.
 
-## 🚀 Características principales
+## 🚀 Características
 
-- **Carrito de compras** con persistencia en `localStorage`
-- **Búsqueda y filtrado** en tiempo real
+- **Carrito de compras** con persistencia en localStorage
+- **Búsqueda y filtrado** de productos en tiempo real
 - **Ordenamiento** por nombre y precio
 - **Modal de producto** con selección de talla y cantidad
-- **Checkout por WhatsApp** con validación de formulario
+- **Compra rápida** desde las tarjetas
+- **Checkout completo** con validación y envío por WhatsApp
 - **Precios en pesos colombianos (COP)** con formato local
-- **Responsive design** para móviles, tabletas y desktop
+- **Responsive design** para móviles y desktop
 - **Notificaciones toast** para feedback de usuario
-- **Animaciones Canvas** con controles y preferencia de movimiento reducido
 
-## 📁 Estructura del proyecto
+## 📁 Arquitectura del Proyecto
 
 ```
-tiendalucho/
-├── index.html
-├── LICENSE
-├── README.md
-├── ESTRUCTURA_MODULAR.md
-├── ESTRUCTURA_VISUAL.md
-├── RESUMEN_CAMBIOS.md
+TIENDALUCHO/
+├── index.html          # Estructura principal y home
+├── assets/             # Archivos estáticos
+│   ├── css/
+│   │   └── styles.css  # Diseño de la tienda
+│   ├── js/
+│   │   ├── main.js     # Lógica general (DOM, modales, checkout)
+│   │   └── shop.js     # Lógica del carrito y productos
+│   └── images/         # Fotos de productos y logo
 ├── data/
-│   └── products.js
-└── assets/
-    ├── css/
-    │   ├── styles.css
-    │   ├── variables/
-    │   │   ├── colors.css
-    │   │   ├── typography.css
-    │   │   ├── effects.css
-    │   │   └── spacing.css
-    │   ├── components/
-    │   │   ├── reset.css
-    │   │   ├── loader.css
-    │   │   ├── navbar.css
-    │   │   ├── hero.css
-    │   │   ├── buttons.css
-    │   │   ├── cards.css
-    │   │   ├── cart.css
-    │   │   ├── modals.css
-    │   │   ├── forms.css
-    │   │   ├── search-filter.css
-    │   │   ├── canvas-settings.css
-    │   │   └── faq.css
-    │   ├── layouts/
-    │   │   ├── container.css
-    │   │   └── footer.css
-    │   └── utils/
-    │       ├── animations.css
-    │       ├── notifications.css
-    │       ├── responsive.css
-    │       └── accessibility.css
-    └── js/
-        ├── config.js
-        ├── main.js
-        ├── canvas-animations.js
-        ├── shop.js
-        ├── utils/
-        │   ├── storage.js
-        │   ├── notifications.js
-        │   └── helpers.js
-        └── modules/
-            ├── cart.js
-            ├── products.js
-            ├── modals.js
-            └── filters.js
+│   └── products.js     # Base de datos local en JS
+├── README.md           # Documentación del proyecto
+└── .vscode/            # Configuración de VS Code
 ```
 
-## 🔧 Modularización del frontend
+## 🛠️ Instalación y Uso
 
-La aplicación está organizada en capas:
+1. **Clona o descarga** el proyecto
+2. **Abre** `index.html` en tu navegador web
+3. **Navega** por los productos y agrega al carrito
+4. **Completa** el checkout para enviar pedido por WhatsApp
 
-- `assets/css/styles.css` importa todos los módulos CSS.
-- `assets/css/variables/` define colores, tipografía, espaciado y efectos.
-- `assets/css/components/` agrupa estilos por componente visual.
-- `assets/css/layouts/` contiene reglas de diseño global.
-- `assets/css/utils/` aporta utilidades de animación, notificaciones, responsive y accesibilidad.
-- `assets/js/config.js` centraliza constantes globales.
-- `assets/js/utils/` contiene helpers reutilizables y acceso a `localStorage`.
-- `assets/js/modules/` agrupa la lógica del carrito, renderizado de productos, modales y filtros.
-- `assets/js/main.js` orquesta la inicialización general.
-
-## 📋 Carga de scripts en `index.html`
-
-```html
-<script src="assets/js/config.js"></script>
-<script src="assets/js/utils/storage.js"></script>
-<script src="assets/js/utils/notifications.js"></script>
-<script src="assets/js/utils/helpers.js"></script>
-<script src="assets/js/modules/cart.js"></script>
-<script src="assets/js/modules/products.js"></script>
-<script src="assets/js/modules/modals.js"></script>
-<script src="assets/js/modules/filters.js"></script>
-<script src="data/products.js"></script>
-<script src="assets/js/canvas-animations.js"></script>
-<script src="assets/js/main.js"></script>
-```
-
-## 🛠️ Instalación y uso
-
-1. Clona o descarga el proyecto.
-2. Abre `index.html` directamente en el navegador o usa un servidor local.
-3. Explora productos, agrega al carrito y finaliza la compra por WhatsApp.
-
-### Servidor local recomendado
-
-```bash
-python3 -m http.server
-```
-
-Luego abre `http://localhost:8000`.
+### Requisitos
+- Navegador web moderno con JavaScript habilitado
+- Conexión a internet para cargar fuentes e íconos
 
 ## 📦 Cómo agregar productos
 
-Edita `data/products.js` y agrega nuevos objetos al array `products`:
+Edita `data/products.js` y agrega objetos al array `products`:
 
 ```javascript
 {
-  name: "Nombre del Producto",
-  price: 99999,
-  category: "ropa",
-  image: "https://url-de-la-imagen.jpg"
+    name: "Nombre del Producto",
+    price: 99999,  // Precio en COP sin puntos
+    category: "ropa", // "ropa" o "calzado"
+    image: "https://url-de-la-imagen.jpg"
 }
 ```
 
 Los productos se renderizan automáticamente al cargar la página.
 
-## 🛠️ Organización de JavaScript
+## 🔧 Desarrollo
 
-- `config.js`: constantes y configuración global.
-- `storage.js`: guardado y carga en `localStorage`.
-- `notifications.js`: mensajes toast.
-- `helpers.js`: utilidades como formato de moneda y validación.
-- `cart.js`: gestión del carrito, totales y cantidades.
-- `products.js`: renderizado de productos y tarjetas.
-- `modals.js`: apertura y cierre de modales.
-- `filters.js`: búsqueda, filtros de categoría y orden.
-- `main.js`: inicializa eventos y conecta todos los módulos.
+### Archivos principales:
+- `main.js`: Maneja la interfaz general, modales y proceso de checkout
+- `shop.js`: Maneja productos, carrito, búsqueda y filtros
 
-## 🎨 Organización de CSS
-
-- `variables/`: paleta y tokens de diseño.
-- `components/`: estilos separados por bloque UI.
-- `layouts/`: estructura de página global.
-- `utils/`: utilidades de estilo y accesibilidad.
-
-## 📚 Documentación adicional
-
-- `ESTRUCTURA_MODULAR.md`: guía de la arquitectura modular.
-- `RESUMEN_CAMBIOS.md`: resumen de los cambios realizados.
-- `ESTRUCTURA_VISUAL.md`: mapa visual de la estructura de archivos.
+### Funcionalidades técnicas:
+- **Persistencia**: Carrito guardado en localStorage
+- **Validación**: Formularios con regex y mensajes de error
+- **UX**: Notificaciones toast, animaciones suaves
+- **Integración**: Envío directo a WhatsApp con mensaje formateado
 
 ## 📱 Responsive Design
 
-El sitio está optimizado para:
-- Desktop: grilla de productos y navegación completa.
-- Tablet: espaciado y columnas adaptadas.
-- Mobile: menú simplificado y modales optimizados.
+La tienda está optimizada para:
+- **Desktop**: Layout completo con grid
+- **Tablet**: Ajustes en espaciado y tamaños
+- **Mobile**: Navegación touch-friendly, modales adaptados
 
 ## 🤝 Contribuir
 
-1. Haz fork del proyecto.
-2. Crea una rama para tu mejora.
-3. Realiza tus cambios.
-4. Envía un pull request.
+Para contribuir:
+1. Haz fork del proyecto
+2. Crea una rama para tu feature
+3. Realiza tus cambios
+4. Envía un pull request
 
 ## 📄 Licencia
 
-Licencia MIT.
+Este proyecto es de código abierto bajo la licencia MIT.
 
 ## 📞 Contacto
 
-- WhatsApp: +57 304 435 9009
-- Email: ventas@luchodiaz.shop
-- Ubicación: Barranquilla, Colombia
+- **WhatsApp**: +57 304 435 9009
+- **Email**: ventas@luchodiaz.shop
+- **Ubicación**: Barranquilla, Colombia
+
+---
+
+*Desarrollado con ❤️ para los fans de Lucho Díaz*
+- `products.js`: Contiene los datos de productos
+
+## Tecnologías
+
+- HTML5, CSS3, JavaScript vanilla
+- Font Awesome para iconos
+- Google Fonts (Poppins)
+- localStorage para persistencia
+
+## 🎨 Animaciones Canvas
+
+Se añadieron dos animaciones Canvas de alto rendimiento para mejorar el diseño:
+
+- `hero-canvas`: animación sutil de ondas y un foco de luz en la cabecera.
+- `particles-canvas`: partículas conectadas detrás del grid de productos.
+
+Características importantes:
+- Alto rendimiento: soporte para devicePixelRatio (pantallas Retina), `requestAnimationFrame`, pausa automática cuando la pestaña está oculta.
+- Accesibilidad: respeta `prefers-reduced-motion` y es capaz de desactivarse.
+- Controles en UI: hay un botón flotante en la esquina inferior izquierda que abre un panel para activar/desactivar animaciones y ajustar la densidad de partículas. Los ajustes se guardan en `localStorage`.
+
+Cómo probar y ajustar:
+1. Abre `index.html` con un servidor local (por ejemplo `python3 -m http.server`).
+2. Haz clic en el icono de "sliders" en la esquina inferior izquierda para abrir el panel de Animaciones.
+3. Activa/desactiva "Hero" o "Partículas" y ajusta la intensidad de partículas con el slider. Los cambios se guardan automáticamente.
+
+Si quieres cambiar valores por defecto o el comportamiento programáticamente, revisa `assets/js/canvas-animations.js`.
