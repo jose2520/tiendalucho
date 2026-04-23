@@ -1,116 +1,87 @@
 /**
- * LÓGICA GENERAL DE LA TIENDA
- * Tienda Lucho Díaz Shop
+ * MAIN.JS - ARCHIVO PRINCIPAL DE INICIALIZACIÓN
+ * ================================================
+ * Coordina la inicialización de todos los módulos y componentes.
+ * Conecta eventos, configura UI y prepara la aplicación.
  */
 
-// --- SELECTORES GLOBALES ---
-const loader = document.getElementById('loader');
-const cartModal = document.getElementById('cart-modal');
-const overlay = document.getElementById('overlay');
-const productModal = document.getElementById('product-modal');
-const checkoutModal = document.getElementById('checkout-modal');
-const sizeGuideModal = document.getElementById('size-guide-modal');
-const faqModal = document.getElementById('faq-modal');
-
-// --- PANTALLA DE CARGA ---
-window.onload = () => {
+/**
+ * EVENTOS GLOBALES A LA CARGA DEL DOM
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar loader
+    const loader = document.getElementById('loader');
     loader.style.opacity = '0';
-    setTimeout(() => loader.style.display = 'none', 500);
-    initShop(); // Inicializar tienda después de cargar
-};
+    setTimeout(() => {
+        loader.style.display = 'none';
+    }, 500);
 
-// --- GESTIÓN DE INTERFAZ (ABRIR/CERRAR) ---
-function toggleCart() {
-    cartModal.classList.toggle('active');
-    overlay.classList.toggle('active');
-}
+    // Cargar carrito desde almacenamiento
+    Cart.load();
 
-document.getElementById('open-cart').onclick = toggleCart;
-document.getElementById('close-cart').onclick = toggleCart;
+    // Inicializar productos
+    Products.render();
+    Products.setupEvents();
 
-document.getElementById('close-modal').onclick = () => {
-    productModal.classList.remove('active');
-    overlay.classList.remove('active');
-};
+    // Configurar filtros
+    Filters.setup();
 
-document.getElementById('close-checkout').onclick = () => {
-    checkoutModal.classList.remove('active');
-    overlay.classList.remove('active');
-};
+    // Configurar modales
+    Modals.setupEvents();
 
-document.getElementById('close-size-guide').onclick = () => {
-    sizeGuideModal.classList.remove('active');
-    overlay.classList.remove('active');
-};
+    // Configurar eventos de carrito
+    setupCartEvents();
 
-document.getElementById('close-faq').onclick = () => {
-    faqModal.classList.remove('active');
-    overlay.classList.remove('active');
-};
+    // Configurar eventos de checkout
+    setupCheckoutEvents();
 
-document.querySelectorAll('[data-open-modal]').forEach(element => {
-    element.onclick = (e) => {
-        e.preventDefault();
-        const target = e.currentTarget.dataset.openModal;
-        if (target === 'size-guide') sizeGuideModal.classList.add('active');
-        if (target === 'faq') faqModal.classList.add('active');
-        overlay.classList.add('active');
-    };
+    // Configurar eventos de FAQ
+    setupFAQEvents();
 });
 
-overlay.onclick = () => {
-    [cartModal, productModal, checkoutModal, sizeGuideModal, faqModal, overlay].forEach(m => m.classList.remove('active'));
-};
+/**
+ * EVENTOS DEL CARRITO
+ */
+function setupCartEvents() {
+    const openCartBtn = document.getElementById('open-cart');
+    const closeCartBtn = document.getElementById('close-cart');
 
-document.getElementById('faq-form').onsubmit = function(e) {
-    e.preventDefault();
-    const name = document.getElementById('faq-name').value.trim();
-    const email = document.getElementById('faq-email').value.trim();
-    const question = document.getElementById('faq-question').value.trim();
-    if (!name || !email || !question) {
-        showToast('Completa todos los campos del formulario.', 'error');
-        return;
+    if (openCartBtn) {
+        openCartBtn.addEventListener('click', () => Modals.openCart());
     }
-    showToast('Gracias por tu pregunta. Te responderemos pronto.', 'success');
-    faqModal.classList.remove('active');
-    overlay.classList.remove('active');
-    e.target.reset();
-};
 
-// Control de cantidad en el modal
-window.updateQty = (val) => {
-    const input = document.getElementById('modal-qty');
-    let n = parseInt(input.value) + val;
-    input.value = n < 1 ? 1 : n;
-};
+    if (closeCartBtn) {
+        closeCartBtn.addEventListener('click', () => Modals.closeCart());
+    }
+}
 
-// Añadir desde el modal con cantidad y talla
-document.getElementById('modal-add-to-cart').onclick = () => {
-    const selected = document.querySelector('.size-btn.active');
-    if(!selected) return alert('Por favor, selecciona una talla.');
+/**
+ * EVENTOS DEL CHECKOUT Y PAGO
+ */
+function setupCheckoutEvents() {
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const checkoutForm = document.getElementById('checkout-form');
+    const submitBtn = document.getElementById('submit-order');
 
-    const cantidad = parseInt(document.getElementById('modal-qty').value);
-    addToCart(
-        document.getElementById('modal-name').innerText,
-        document.getElementById('modal-price').innerText.replace('COP $',''),
-        selected.innerText,
-        cantidad
-    );
-    productModal.classList.remove('active');
-    cartModal.classList.add('active');
-};
+    // Abrir checkout
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => Modals.openCheckout());
+    }
 
-// --- PROCESO DE PAGO (WHATSAPP) ---
-document.getElementById('checkout-btn').onclick = () => {
-    if(!cart.length) return alert('El carrito está vacío');
-    cartModal.classList.remove('active');
-    checkoutModal.classList.add('active');
-};
+    // Enviar pedido por WhatsApp
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleCheckoutSubmit();
+        });
+    }
+}
 
-document.getElementById('checkout-form').onsubmit = function(e) {
-    e.preventDefault();
-
-    const btn = document.getElementById('submit-order');
+/**
+ * Procesa el envío del formulario de checkout
+ */
+function handleCheckoutSubmit() {
+    // Obtener valores del formulario
     const name = document.getElementById('cust-name').value.trim();
     const phone = document.getElementById('cust-phone').value.trim();
     const email = document.getElementById('cust-email').value.trim();
@@ -118,45 +89,54 @@ document.getElementById('checkout-form').onsubmit = function(e) {
     const city = document.getElementById('cust-city').value.trim();
     const payment = document.getElementById('cust-payment').value;
     const notes = document.getElementById('cust-notes').value.trim();
-    const total = document.getElementById('checkout-total-price').innerText.replace(/\./g, '');
+    const submitBtn = document.getElementById('submit-order');
 
     // Validaciones
     if (!name || name.length < 2) {
-        showToast('Por favor ingresa un nombre válido (mínimo 2 caracteres).', 'error');
+        Notification.error('Por favor ingresa un nombre válido (mínimo 2 caracteres).');
         document.getElementById('cust-name').focus();
         return;
     }
-    if (!/^[0-9]{10}$/.test(phone)) {
-        showToast('Ingresa un número de WhatsApp válido de 10 dígitos.', 'error');
+
+    if (!Helpers.isValidPhone(phone)) {
+        Notification.error('Ingresa un número de WhatsApp válido de 10 dígitos.');
         document.getElementById('cust-phone').focus();
         return;
     }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showToast('Ingresa un correo electrónico válido o deja el campo vacío.', 'error');
+
+    if (!Helpers.isValidEmail(email)) {
+        Notification.error('Ingresa un correo electrónico válido o deja el campo vacío.');
         document.getElementById('cust-email').focus();
         return;
     }
+
     if (!address || address.length < 10) {
-        showToast('Por favor ingresa una dirección completa.', 'error');
+        Notification.error('Por favor ingresa una dirección completa.');
         document.getElementById('cust-address').focus();
         return;
     }
+
     if (!city || city.length < 3) {
-        showToast('Por favor ingresa una ciudad válida.', 'error');
+        Notification.error('Por favor ingresa una ciudad válida.');
         document.getElementById('cust-city').focus();
         return;
     }
 
-    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> PROCESANDO...';
-    btn.disabled = true;
+    // Mostrar estado de procesamiento
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> PROCESANDO...';
+    submitBtn.disabled = true;
 
+    // Construir mensaje para WhatsApp
+    const orderNumber = Math.floor(1000 + Math.random() * 9000);
+    const total = Cart.getTotal();
+    
     let productList = "";
     cart.forEach((item, index) => {
         productList += `${index + 1}. *${item.name}* [Talla: ${item.size}] x${item.quantity}\n`;
     });
 
     const message =
-        `⚽ *NUEVO PEDIDO: #LD-${Math.floor(1000 + Math.random() * 9000)}* ⚽\n` +
+        `⚽ *NUEVO PEDIDO: #LD-${orderNumber}* ⚽\n` +
         `------------------------------------------\n` +
         `👤 *CLIENTE:* ${name.toUpperCase()}\n` +
         `📱 *TEL:* ${phone}\n` +
@@ -167,21 +147,92 @@ document.getElementById('checkout-form').onsubmit = function(e) {
         `${notes ? `📝 *NOTAS:* ${notes}\n` : ''}` +
         `------------------------------------------\n\n` +
         `📦 *PRODUCTOS:*\n${productList}\n` +
-        `💰 *TOTAL: COP $${total}*\n\n` +
+        `💰 *TOTAL: COP $${total.toLocaleString()}*\n\n` +
         `🚀 _Enviado desde Lucho Díaz Shop_`;
 
-    const whatsappUrl = `https://wa.me/573044359009?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `${CONFIG.whatsapp.baseUrl}${CONFIG.whatsapp.phoneNumber}?text=${encodeURIComponent(message)}`;
 
     setTimeout(() => {
+        // Abrir WhatsApp
         window.open(whatsappUrl, '_blank');
-        cart = [];
-        saveCart();
-        updateUI();
-        checkoutModal.classList.remove('active');
-        overlay.classList.remove('active');
-        btn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> CONFIRMAR POR WHATSAPP';
-        btn.disabled = false;
-        e.target.reset();
-        showToast('¡Pedido enviado exitosamente! Revisa WhatsApp para confirmar.', 'success');
+
+        // Limpiar carrito
+        Cart.clear();
+
+        // Cerrar modal
+        Modals.closeAll();
+
+        // Resetear formulario
+        document.getElementById('checkout-form').reset();
+
+        // Restablecer botón
+        submitBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> CONFIRMAR POR WHATSAPP';
+        submitBtn.disabled = false;
+
+        // Mostrar éxito
+        Notification.success('¡Pedido enviado exitosamente! Revisa WhatsApp para confirmar.');
     }, 500);
+}
+
+/**
+ * EVENTOS DE FAQ
+ */
+function setupFAQEvents() {
+    const faqForm = document.getElementById('faq-form');
+
+    if (faqForm) {
+        faqForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('faq-name').value.trim();
+            const email = document.getElementById('faq-email').value.trim();
+            const question = document.getElementById('faq-question').value.trim();
+
+            // Validar campos
+            if (!name || !email || !question) {
+                Notification.error('Completa todos los campos del formulario.');
+                return;
+            }
+
+            // Éxito
+            Notification.success('Gracias por tu pregunta. Te responderemos pronto.');
+            Modals.close('#faq-modal');
+            faqForm.reset();
+        });
+    }
+}
+
+/**
+ * EVENTOS DEL MODAL DE PRODUCTO
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const modalAddBtn = document.getElementById('modal-add-to-cart');
+
+    if (modalAddBtn) {
+        modalAddBtn.addEventListener('click', function() {
+            const selected = document.querySelector('.size-btn.active');
+            
+            if (!selected) {
+                Notification.error(CONFIG.messages.selectSize);
+                return;
+            }
+
+            const cantidad = parseInt(document.getElementById('modal-qty').value);
+            const name = document.getElementById('modal-name').innerText;
+            const price = document.getElementById('modal-price').innerText.replace('COP $', '');
+            const size = selected.innerText;
+
+            Cart.add(name, price, size, cantidad);
+            Modals.openCart();
+            Modals.close('#product-modal');
+        });
+    }
+});
+
+/**
+ * INICIALIZACIÓN CUANDO LA VENTANA SE CARGA (window.onload)
+ * Usado para compatibility con código antiguo
+ */
+window.onload = function() {
+    // Ya inicializado en DOMContentLoaded
 };

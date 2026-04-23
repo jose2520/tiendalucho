@@ -1,0 +1,39 @@
+/**
+ * RESET Y ESTILOS BASE
+ * Normaliza y establece estilos base para todos los elementos.
+ */
+
+/* Reset global */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos base del body */
+body {
+    font-family: var(--font-family);
+    line-height: var(--line-height-normal);
+    color: var(--dark);
+    scroll-behavior: smooth;
+    background-color: var(--light);
+}
+
+/* Enlaces por defecto */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Botones por defecto */
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* Formularios */
+input,
+textarea,
+select {
+    font-family: inherit;
+}

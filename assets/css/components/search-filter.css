@@ -1,0 +1,77 @@
+/**
+ * COMPONENTE SEARCH & FILTER
+ * Barra de búsqueda, filtros de categoría y ordenamiento de productos.
+ */
+
+.search-sort-bar {
+    display: flex;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.search-wrapper {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-wrapper i {
+    position: absolute;
+    left: var(--spacing-md);
+    color: #999;
+    font-size: var(--font-size-sm);
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 35px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+.sort-select {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    background: var(--light);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.sort-select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+/* Filtros de categoría */
+.category-filters {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#products-count {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    opacity: 0.7;
+    font-size: var(--font-size-sm);
+}

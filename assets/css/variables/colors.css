@@ -1,0 +1,25 @@
+/**
+ * VARIABLES DE COLORES
+ * Define los colores principales, secundarios y neutrales utilizados en toda la aplicación.
+ * Facilita el mantenimiento y cambios globales de los colores.
+ */
+
+:root {
+    /* Colores primarios - Rojo corporativo Lucho Díaz */
+    --primary: #C8102E;
+    --primary-dark: #a00d25;
+    
+    /* Colores neutrales */
+    --dark: #121212;
+    --light: #ffffff;
+    
+    /* Escala de grises */
+    --gray-100: #f8f9fa;
+    --gray-300: #dee2e6;
+    
+    /* Colores funcionales */
+    --success: #25d366;      /* Verde WhatsApp */
+    --error: #e74c3c;        /* Rojo de error */
+    --warning: #f39c12;      /* Naranja de advertencia */
+    --info: #3498db;         /* Azul de información */
+}

@@ -1,0 +1,47 @@
+/**
+ * LAYOUT CONTAINER
+ * Contenedor general para secciones principales con ancho máximo.
+ */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: var(--spacing-4xl) 5%;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-3xl);
+}
+
+/* Canvas layers */
+#hero-canvas,
+#particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#tienda {
+    position: relative;
+}
+
+#particles-canvas {
+    top: -60px;
+    height: calc(100% + 140px);
+}
+
+#tienda .products-grid,
+#tienda .category-filters,
+#tienda .search-sort-bar {
+    position: relative;
+    z-index: 1;
+}

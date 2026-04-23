@@ -1,0 +1,88 @@
+/**
+ * COMPONENTE CANVAS SETTINGS
+ * Panel flotante para controlar las animaciones del canvas (hero y partículas).
+ */
+
+.canvas-settings-btn {
+    position: fixed;
+    left: var(--spacing-xl);
+    bottom: 28px;
+    z-index: var(--z-fixed);
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-full);
+    background: rgba(18, 18, 18, 0.92);
+    color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    font-size: 18px;
+    transition: var(--transition);
+}
+
+.canvas-settings-btn:hover {
+    transform: translateY(-3px);
+}
+
+.canvas-settings-panel {
+    position: fixed;
+    left: var(--spacing-xl);
+    bottom: 92px;
+    z-index: var(--z-fixed);
+    width: 260px;
+    background: var(--light);
+    color: #222;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-xl);
+    display: none;
+    font-size: var(--font-size-sm);
+}
+
+.canvas-settings-panel.open {
+    display: block;
+}
+
+.canvas-settings-panel h4 {
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+.cs-row {
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+}
+
+.cs-row label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.cs-row input[type="range"] {
+    width: 110px;
+}
+
+.presets {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.presets-row {
+    flex-direction: column;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+}
+
+#reset-canvas-settings {
+    width: 100%;
+    margin-top: var(--spacing-md);
+}

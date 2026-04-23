@@ -1,0 +1,40 @@
+/**
+ * COMPONENTE HERO
+ * Sección principal con imagen de fondo, título y llamada a la acción.
+ * Incluye canvas animado de fondo (olas).
+ */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    height: 70vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+                url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=2000') no-repeat center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--light);
+    text-align: center;
+    padding: 0 var(--spacing-md);
+}
+
+.hero > *:not(canvas) {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--spacing-lg);
+    font-weight: var(--font-weight-bold);
+}
+
+.hero p {
+    font-size: var(--font-size-lg);
+    opacity: 0.9;
+    max-width: 600px;
+    margin-bottom: var(--spacing-xl);
+    line-height: var(--line-height-normal);
+}

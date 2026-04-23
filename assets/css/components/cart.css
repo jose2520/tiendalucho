@@ -1,0 +1,102 @@
+/**
+ * COMPONENTE CART DRAWER
+ * Panel lateral que muestra los productos agregados al carrito.
+ * Se abre y cierra desde el botón de carrito en la navbar.
+ */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: var(--z-overlay);
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: var(--light);
+    z-index: var(--z-modal);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-xl);
+}
+
+.cart-drawer.active {
+    right: 0;
+}
+
+#cart-items {
+    overflow-y: auto;
+    margin-bottom: var(--spacing-lg);
+    flex-grow: 1;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.cart-item-header {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+}
+
+.cart-item-header h4 {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.cart-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    color: #555;
+    font-size: var(--font-size-sm);
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.cart-item-controls button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    background: var(--light);
+    color: var(--dark);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.cart-item-controls button:hover {
+    background: var(--gray-100);
+}
+
+.cart-item-controls span {
+    min-width: 26px;
+    text-align: center;
+    font-weight: var(--font-weight-bold);
+}

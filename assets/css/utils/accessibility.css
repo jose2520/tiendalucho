@@ -1,0 +1,53 @@
+/**
+ * UTILIDADES DE ACCESIBILIDAD
+ * Respeta preferencias del usuario e incluye mejoras de accesibilidad.
+ */
+
+/* Respeta la preferencia de reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    #hero-canvas,
+    #particles-canvas {
+        display: none;
+    }
+}
+
+/* Focus visible para accesibilidad por teclado */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Skip link para navegar al contenido principal */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: var(--light);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-decoration: none;
+    z-index: var(--z-modal);
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* Mejora visual del texto seleccionado */
+::selection {
+    background: var(--primary);
+    color: var(--light);
+}

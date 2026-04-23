@@ -1,0 +1,165 @@
+/**
+ * COMPONENTE MODALS
+ * Estilos para todos los diálogos modales (productos, checkout, guía de tallas, FAQ).
+ * Se superponen en la pantalla con fondo oscuro.
+ */
+
+.product-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: var(--z-modal);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-md);
+}
+
+.product-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--light);
+    width: 100%;
+    max-width: 850px;
+    border-radius: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    position: relative;
+    animation: modalIn 0.4s ease;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-img {
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+}
+
+.modal-img img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+.modal-details {
+    padding: 3rem;
+}
+
+.modal-category {
+    color: var(--primary);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    font-size: var(--font-size-xs);
+    letter-spacing: 1px;
+}
+
+.modal-details h2 {
+    color: var(--primary);
+    margin-top: var(--spacing-sm);
+    font-weight: var(--font-weight-bold);
+}
+
+.modal-features {
+    margin: var(--spacing-lg) 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+}
+
+.feature-item {
+    font-size: var(--font-size-xs);
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.feature-item i {
+    color: var(--success);
+}
+
+/* Selector de tallas */
+.size-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.size-btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: 0.3s;
+    background: var(--light);
+    font-weight: var(--font-weight-semibold);
+}
+
+.size-btn.active {
+    background: var(--dark);
+    color: white;
+    border-color: var(--dark);
+}
+
+/* Selector de cantidad */
+.qty-selector {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.qty-input {
+    width: 35px;
+    text-align: center;
+    border: none;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-base);
+}
+
+/* Lista de opciones en modales */
+.modal-list {
+    display: grid;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.modal-list > div {
+    background: #fff6f7;
+    border: 1px solid rgba(200, 16, 46, 0.15);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+}
+
+.modal-list h3 {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-base);
+    color: #333;
+    font-weight: var(--font-weight-semibold);
+}
+
+.modal-list ul {
+    list-style: none;
+    padding-left: 0;
+    color: #555;
+    line-height: var(--line-height-relaxed);
+}

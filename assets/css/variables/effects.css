@@ -1,0 +1,25 @@
+/**
+ * VARIABLES DE EFECTOS VISUALES
+ * Define sombras, transiciones y otras propiedades de efectos visuales.
+ */
+
+:root {
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-base: 0 4px 8px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-xl: 0 12px 30px rgba(0, 0, 0, 0.15);
+    
+    /* Transiciones */
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --transition-fast: all 0.2s ease;
+    --transition-slow: all 0.6s ease;
+    
+    /* Índices z-index */
+    --z-dropdown: 1000;
+    --z-sticky: 1000;
+    --z-fixed: 1200;
+    --z-overlay: 1500;
+    --z-modal: 2000;
+    --z-loader: 9999;
+}

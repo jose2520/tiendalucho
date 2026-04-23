@@ -1,0 +1,52 @@
+/**
+ * UTILIDADES DE NOTIFICACIONES
+ * Estilos para mensajes toast (notificaciones emergentes).
+ */
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--dark);
+    color: var(--light);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    z-index: var(--z-fixed);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    max-width: 300px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition);
+    font-size: var(--font-size-sm);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-success {
+    border-left: 4px solid var(--success);
+}
+
+.toast-error {
+    border-left: 4px solid var(--error);
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--error);
+}
+
+.toast i {
+    font-size: var(--font-size-lg);
+    flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    .toast {
+        left: var(--spacing-lg);
+        right: var(--spacing-lg);
+        max-width: none;
+    }
+}

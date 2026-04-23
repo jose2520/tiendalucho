@@ -1,0 +1,100 @@
+/**
+ * COMPONENTE FORMS
+ * Estilos para formularios de checkout y FAQ.
+ */
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.checkout-form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.checkout-label {
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+    display: block;
+    color: #444;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: var(--font-size-sm);
+}
+
+.checkout-input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 35px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    transition: 0.3s;
+    font-size: var(--font-size-sm);
+}
+
+.checkout-input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+.checkout-textarea {
+    min-height: 100px;
+    resize: vertical;
+    padding-top: var(--spacing-md);
+}
+
+/* Formulario FAQ */
+.faq-form {
+    margin-top: var(--spacing-lg);
+    display: grid;
+    gap: var(--spacing-sm);
+}
+
+.faq-form label {
+    font-weight: var(--font-weight-semibold);
+    color: #444;
+    font-size: var(--font-size-sm);
+}
+
+.faq-form input,
+.faq-form textarea {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--gray-300);
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+}
+
+.faq-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.faq-form button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: 18px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: var(--font-weight-semibold);
+}
+
+.faq-form button:hover {
+    background: var(--primary-dark);
+}

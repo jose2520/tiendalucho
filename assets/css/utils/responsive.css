@@ -1,0 +1,124 @@
+/**
+ * UTILIDADES RESPONSIVAS
+ * Media queries para adaptarse a diferentes tamaños de pantalla.
+ */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+    .navbar {
+        padding: var(--spacing-lg) 3%;
+    }
+
+    .nav-links {
+        gap: var(--spacing-lg);
+    }
+
+    .hero {
+        height: 60vh;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.8rem, 6vw, 3rem);
+    }
+
+    .modal-content {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-img {
+        max-height: 300px;
+    }
+
+    .cart-drawer {
+        max-width: 100%;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: var(--spacing-xl);
+    }
+
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-sort-bar {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+
+    .search-wrapper {
+        min-width: auto;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Teléfonos */
+@media (max-width: 480px) {
+    .navbar {
+        padding: var(--spacing-md) 3%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        height: 50vh;
+        padding: 0 var(--spacing-sm);
+    }
+
+    .hero h1 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .hero p {
+        font-size: var(--font-size-sm);
+    }
+
+    .modal-details {
+        padding: var(--spacing-xl);
+    }
+
+    .category-filters {
+        gap: var(--spacing-md);
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: var(--spacing-md);
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: var(--spacing-xl) 3%;
+    }
+
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .canvas-settings-panel {
+        left: var(--spacing-lg);
+        right: var(--spacing-lg);
+        width: auto;
+        bottom: 80px;
+    }
+
+    .canvas-settings-btn {
+        left: var(--spacing-lg);
+        bottom: 20px;
+    }
+
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+}
