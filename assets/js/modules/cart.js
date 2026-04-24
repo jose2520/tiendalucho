@@ -14,19 +14,19 @@ const Cart = {
      * @param {string} size - Selected size
      * @param {number} quantity - Quantity to add
      */
-    add: function(name, price, size = "One Size", quantity = 1) {
+    add: function(name, price, size = "Única", quantity = 1) {
         const parsedPrice = parseFloat(price);
         
-        if (Number.isNaN(parsedPrice) || quantity < 1) return;
+        if (Number.isNaN(parsedPrice) || !Number.isInteger(qty) || qty < 1) return;
 
         const existingIndex = cart.findIndex(
             item => item.name === name && item.size === size
         );
         
         if (existingIndex >= 0) {
-            cart[existingIndex].quantity += quantity;
+            cart[existingIndex].quantity += qty;
         } else {
-            cart.push({ name, price: parsedPrice, size, quantity });
+            cart.push({ name, price: parsedPrice, size, quantity: qty });
         }
 
         this.save();
@@ -76,6 +76,14 @@ const Cart = {
      */
     getTotal: function() {
         return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    },
+
+    /**
+     * Obtiene una copia de los items del carrito
+     * @returns {Array} Items del carrito
+     */
+    getItems: function() {
+        return cart.slice();
     },
 
     /**
@@ -140,6 +148,7 @@ const Cart = {
                 </p>
             `;
         } else {
+            // Renderizar items
             cartItemsEl.innerHTML = '';
             cart.forEach((item, i) => {
                 const itemEl = document.createElement('div');
@@ -162,8 +171,10 @@ const Cart = {
                         <span style="margin-left:auto; font-weight:700;">Subtotal: COP $${(item.price * item.quantity).toLocaleString()}</span>
                     </div>
                 `;
-                cartItemsEl.appendChild(itemEl);
+                fragment.appendChild(itemEl);
             });
+            cartItemsEl.innerHTML = '';
+            cartItemsEl.appendChild(fragment);
         }
 
         const countEl = document.getElementById('cart-count');

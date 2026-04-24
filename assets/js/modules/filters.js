@@ -43,9 +43,13 @@ const Filters = {
         const searchInput = document.getElementById('search-input');
         
         if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                this.state.searchTerm = e.target.value.trim();
+            const debouncedRender = Helpers.debounce((value) => {
+                this.state.searchTerm = value.trim();
                 this.render();
+            }, 220);
+
+            searchInput.addEventListener('input', (e) => {
+                debouncedRender(e.target.value);
             });
         }
     },

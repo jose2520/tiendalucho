@@ -1,15 +1,17 @@
 /**
- * MODULES/PRODUCTS.JS - PRODUCT MANAGEMENT
- * Handles rendering, search, and filtering of products.
- * Creates product cards dynamically.
+ * MODULES/PRODUCTS.JS - GESTIÓN DE PRODUCTOS
+ * Maneja el renderizado, búsqueda y filtrado de productos.
+ * Crea las tarjetas de productos dinámicamente.
  */
 
 const Products = {
+    initialized: false,
+
     /**
-     * Renders products in the grid using current filters
-     * @param {string} category - Category to filter
-     * @param {string} searchTerm - Search query
-     * @param {string} sortBy - Sort criteria
+     * Renderiza los productos en la grilla según filtros
+     * @param {string} category - Categoría a filtrar
+     * @param {string} searchTerm - Término de búsqueda
+     * @param {string} sortBy - Criterio de ordenamiento
      */
     render: function(category = 'all', searchTerm = '', sortBy = 'name-asc') {
         const grid = document.getElementById('products-container');
@@ -17,20 +19,20 @@ const Products = {
 
         grid.innerHTML = '';
         
-        // Filter by category
+        // Filtrar por categoría
         let filteredProducts = products;
         if (category !== 'all') {
             filteredProducts = products.filter(p => p.category === category);
         }
 
-        // Filter by search
+        // Filtrar por búsqueda
         if (searchTerm) {
             filteredProducts = filteredProducts.filter(p => 
                 p.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
 
-        // Sort products
+        // Ordenar productos
         filteredProducts.sort((a, b) => {
             switch (sortBy) {
                 case 'name-asc':
@@ -46,7 +48,7 @@ const Products = {
             }
         });
 
-        // Render cards
+        // Renderizar tarjetas
         if (filteredProducts.length === 0) {
             grid.innerHTML = `
                 <p style="text-align:center; opacity:0.5; padding: 40px; grid-column: 1 / -1;">
@@ -55,21 +57,23 @@ const Products = {
             `;
             document.getElementById('products-count').textContent = '';
         } else {
+            const fragment = document.createDocumentFragment();
             filteredProducts.forEach(product => {
-                grid.appendChild(this.createCard(product));
+                fragment.appendChild(this.createCard(product));
             });
-            
+            grid.appendChild(fragment);
+
             const countText = filteredProducts.length === 1 
-                ? '1 product found' 
-                : `${filteredProducts.length} products found`;
+                ? '1 producto encontrado' 
+                : `${filteredProducts.length} productos encontrados`;
             document.getElementById('products-count').textContent = countText;
         }
     },
 
     /**
-     * Creates a product card element
-     * @param {Object} product - Product object
-     * @returns {HTMLElement} Card element
+     * Crea una tarjeta de producto
+     * @param {Object} product - Objeto del producto
+     * @returns {HTMLElement} Elemento de la tarjeta
      */
     createCard: function(product) {
         const article = document.createElement('article');
@@ -81,40 +85,41 @@ const Products = {
         
         article.innerHTML = `
             <div class="card-img-wrapper">
-                <img data-src="${product.image}" alt="${product.name}" loading="lazy">
+                <img src="${product.image}" alt="${product.name}">
             </div>
             <h3>${product.name}</h3>
             <span class="price">COP $${product.price.toLocaleString()}</span>
-            <button class="btn-add btn-buy">Add to Cart</button>
+            <button class="btn-add btn-buy">Añadir al Carrito</button>
         `;
         
         return article;
     },
 
     /**
-     * Configures product card events
+     * Configura los eventos de las tarjetas de productos
      */
     setupEvents: function() {
-        // Click on card opens product modal
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (e.target.classList.contains('btn-buy')) return;
-                Modals.openProduct(card);
-            });
+        if (this.initialized) return;
+
+        const grid = document.getElementById('products-container');
+        if (!grid) return;
+
+        grid.addEventListener('click', (e) => {
+            const card = e.target.closest('.card');
+            if (!card) return;
+
+            const buyButton = e.target.closest('.btn-buy');
+            if (buyButton) {
+                const name = card.dataset.name;
+                const price = card.dataset.price;
+                const size = Helpers.getDefaultSize(card.dataset.category);
+                Cart.add(name, price, size, 1);
+                return;
+            }
+
+            Modals.openProduct(card);
         });
 
-        // Quick buy button
-        document.querySelectorAll('.card .btn-buy').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const card = e.target.closest('.card');
-                Cart.add(
-                    card.dataset.name,
-                    card.dataset.price,
-                    Helpers.getDefaultSize(card.dataset.category),
-                    1
-                );
-            });
-        });
+        this.initialized = true;
     }
 };

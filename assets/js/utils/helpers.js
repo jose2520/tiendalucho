@@ -19,6 +19,21 @@ const Helpers = {
     },
 
     /**
+     * Convierte una cadena de precio en número
+     * @param {string|number} value - Valor a normalizar
+     * @returns {number} Precio numérico
+     */
+    parsePrice: function(value) {
+        if (typeof value === 'number') return value;
+        const normalized = String(value)
+            .replace(/COP|\$|\s/g, '')
+            .replace(/\./g, '')
+            .replace(/,/g, '.');
+        const parsed = Number(normalized);
+        return Number.isFinite(parsed) ? parsed : 0;
+    },
+
+    /**
      * Obtiene la talla por defecto según la categoría
      * @param {string} category - Categoría del producto
      * @returns {string} Talla por defecto

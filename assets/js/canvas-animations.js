@@ -20,7 +20,7 @@
 
   function resizeCanvasToDisplaySize(canvas) {
     const rect = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const width = Math.max(0, Math.floor(rect.width * dpr));
     const height = Math.max(0, Math.floor(rect.height * dpr));
     if (canvas.width !== width || canvas.height !== height) {
@@ -171,32 +171,33 @@
       // ctx.fillRect(0,0,width,height);
 
       // update and draw particles
-      ctx.beginPath();
       const cfg = self.config || {};
       const particleColor = cfg.particleColor || '255,255,255';
       const particleAlpha = typeof cfg.particleAlpha === 'number' ? cfg.particleAlpha : 0.55;
+      ctx.fillStyle = `rgba(${particleColor},${particleAlpha})`;
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         p.update(dt);
-        ctx.fillStyle = `rgba(${particleColor},${particleAlpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
       }
 
       // draw connections
-      ctx.beginPath();
       const threshold = Math.min(120, Math.max(60, Math.hypot(width, height) * 0.04));
+      const thresholdSq = threshold * threshold;
+      const lineColor = cfg.lineColor || '255,255,255';
+      const lineAlphaMultiplier = cfg.lineAlphaMultiplier || 1;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const a = particles[i];
           const b = particles[j];
           const dx = a.x - b.x;
           const dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < threshold) {
-            const alpha = 0.12 * (1 - dist / threshold) * (cfg.lineAlphaMultiplier || 1);
-            const lineColor = cfg.lineColor || '255,255,255';
+          const distSq = dx * dx + dy * dy;
+          if (distSq < thresholdSq) {
+            const dist = Math.sqrt(distSq);
+            const alpha = 0.12 * (1 - dist / threshold) * lineAlphaMultiplier;
             ctx.strokeStyle = `rgba(${lineColor},${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.beginPath();
