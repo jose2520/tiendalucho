@@ -22,7 +22,7 @@
 .search-wrapper i {
     position: absolute;
     left: var(--spacing-md);
-    color: #999;
+    color: var(--text-muted);
     font-size: var(--font-size-sm);
     pointer-events: none;
 }

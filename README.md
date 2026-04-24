@@ -1,87 +1,87 @@
 # LuchoDIAZ Shop
 
-Tienda online de productos deportivos, accesorios y prendas para los aficionados del fútbol.
+LuchoDIAZ Shop is an online sports store for soccer fans, featuring jerseys, footwear, apparel, and accessories.
 
-[![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-green.svg)](LICENSE)
-[![Versión](https://img.shields.io/badge/Versión-1.0-blue.svg)]()
-[![Estado](https://img.shields.io/badge/Estado-Activo-success.svg)]()
+[![License MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-1.0-blue.svg)]()
+[![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
 
-## 🚀 Resumen del proyecto
+## 🚀 Project Summary
 
-Este proyecto es una tienda en línea completamente funcional y modular, dedicada a productos deportivos y accesorios de fútbol. Ha sido refactorizado a una estructura modular y escalable, con separación clara entre estilos, lógica y datos.
+This project is a fully functional and modular e-commerce storefront built for sports apparel and soccer accessories. It has been organized into a scalable structure with clear separation between styles, UI logic, configuration, and data.
 
-- **CSS modularizado** en `assets/css/` con variables, componentes, layouts y utilidades.
-- **JavaScript dividido** en utilidades (`assets/js/utils/`), módulos de negocio (`assets/js/modules/`) y archivos de configuración.
-- **Soporte completo** para carrito con persistencia, búsqueda, filtros, modales, checkout y animaciones Canvas.
-- **Diseño responsive** optimizado para desktop, tablet y móvil.
-- **Accesibilidad WCAG 2.1** implementada.
+- **Modular CSS** in `assets/css/` with variables, components, layouts, and utilities.
+- **JavaScript split** across utilities (`assets/js/utils/`), business modules (`assets/js/modules/`), and configuration.
+- **Complete shopping experience** with persistence, search, filters, modals, checkout, and canvas animations.
+- **Responsive design** optimized for desktop, tablet, and mobile.
+- **Accessibility-ready** with improved semantics and aria labels.
 
-## ✨ Funcionalidades principales
+## ✨ Key Features
 
-- 🛒 **Carrito de compras** con persistencia en `localStorage`
-- 🔍 **Búsqueda y filtrado** de productos en tiempo real
-- 📊 **Ordenamiento** por nombre y precio
-- 🔲 **Modal de producto** con selección de talla y cantidad
-- 💳 **Checkout** con validación y envío por WhatsApp
-- 💰 **Precios en COP** con formato local colombiano
-- 📱 **Diseño responsive** para múltiples dispositivos
-- 🔔 **Notificaciones toast** para feedback de usuario
-- 🎨 **Panel de control** para animaciones Canvas
-- ❓ **Sección FAQ** con preguntas frecuentes
-- 📏 **Guía de tallas** integrada
+- 🛒 **Shopping cart** with `localStorage` persistence
+- 🔍 **Real-time search and filtering**
+- 📊 **Sorting** by name and price
+- 🔲 **Product modal** with size selection and quantity control
+- 💳 **Checkout** with validation and WhatsApp order submission
+- 💰 **Prices in COP** formatted for Colombian locale
+- 📱 **Responsive layout** across devices
+- 🔔 **Toast notifications** for user feedback
+- 🎨 **Canvas control panel** for animation settings
+- ❓ **FAQ section** with quick answers
+- 📏 **Built-in size guide**
 
-## 📁 Estructura del proyecto
+## 📁 Project Structure
 
 ```
 tiendalucho/
-├── index.html                    # Página principal HTML
-├── LICENSE                       # Licencia MIT
-├── README.md                     # Documentación combinada
+├── index.html                    # Main HTML page
+├── LICENSE                       # MIT license
+├── README.md                     # Project documentation
 ├── data/
-│   └── products.js               # Base de datos de productos
+│   └── products.js               # Local product database
 └── assets/
     ├── css/
-    │   ├── styles.css            # Archivo principal (importa módulos)
-    │   ├── variables/            # Variables globales CSS
-    │   ├── components/           # Componentes UI reutilizables
-    │   ├── layouts/              # Layouts y estructuras
-    │   └── utils/                # Utilidades CSS
+    │   ├── styles.css            # Main stylesheet (imports component files)
+    │   ├── variables/            # Global CSS variables
+    │   ├── components/           # Reusable UI component styles
+    │   ├── layouts/              # Layout and structure styles
+    │   └── utils/                # Utility styles
     └── js/
-        ├── config.js             # Configuración global
-        ├── main.js               # Inicialización principal
-        ├── canvas-animations.js  # Animaciones visuales
-        ├── shop.js               # Código original (compatibilidad)
-        ├── utils/                # Utilidades JavaScript
-        └── modules/              # Módulos de lógica de negocio
+        ├── config.js             # Global configuration
+        ├── main.js               # Application initialization
+        ├── canvas-animations.js   # Visual animations
+        ├── shop.js               # Legacy shop logic (compatibility)
+        ├── utils/                # JavaScript utilities
+        └── modules/              # Business logic modules
 ```
 
-## 🧩 CSS modularizado
+## 🧩 Modular CSS
 
-- `assets/css/variables/`: colores, tipografía, efectos y espaciado.
-- `assets/css/components/`: estilos por componente como navbar, hero, cards, carrito, modals, botones, filtros y FAQ.
-- `assets/css/layouts/`: contenedores generales y footer.
-- `assets/css/utils/`: animaciones, notificaciones, responsive y accesibilidad.
+- `assets/css/variables/`: color palette, typography, effects, spacing.
+- `assets/css/components/`: navbar, hero, cards, cart, modals, buttons, filters, FAQ, and more.
+- `assets/css/layouts/`: section containers and footer layout.
+- `assets/css/utils/`: animations, notifications, responsiveness, accessibility.
 
-## 🛠️ JavaScript modularizado
+## 🛠️ Modular JavaScript
 
-### Configuración
-- `assets/js/config.js`: constantes globales, claves de `localStorage`, configuración de moneda y mensajes.
+### Configuration
+- `assets/js/config.js`: global constants, `localStorage` keys, currency settings, and UI messages.
 
-### Utilidades
-- `assets/js/utils/storage.js`: gestión de datos en `localStorage`.
-- `assets/js/utils/notifications.js`: notificaciones toast.
-- `assets/js/utils/helpers.js`: formateo de moneda, validaciones, debounce y utilidades DOM.
+### Utilities
+- `assets/js/utils/storage.js`: local storage helpers.
+- `assets/js/utils/notifications.js`: toast notification manager.
+- `assets/js/utils/helpers.js`: currency formatting, validation, DOM utilities.
 
-### Módulos de negocio
-- `assets/js/modules/cart.js`: manejo del carrito, cantidades y totales.
-- `assets/js/modules/products.js`: renderizado de productos y tarjetas.
-- `assets/js/modules/modals.js`: control de modales, checkout y FAQ.
-- `assets/js/modules/filters.js`: filtros por categoría, búsqueda y ordenamiento.
+### Business Modules
+- `assets/js/modules/cart.js`: cart operations, totals, and UI updates.
+- `assets/js/modules/products.js`: product rendering, cards, and interactions.
+- `assets/js/modules/modals.js`: modal behavior for product details, checkout, size guide, and FAQ.
+- `assets/js/modules/filters.js`: category filtering, search, and sorting.
 
-### Inicialización
-- `assets/js/main.js`: orquesta la carga, eventos y la interacción general.
+### Initialization
+- `assets/js/main.js`: orchestrates startup, event binding, and page behavior.
 
-## 🔄 Orden de carga recomendado
+## 🔄 Recommended Load Order
 
 1. `assets/js/config.js`
 2. `assets/js/utils/storage.js`
@@ -95,268 +95,89 @@ tiendalucho/
 10. `assets/js/canvas-animations.js`
 11. `assets/js/main.js`
 
-## 📌 Uso rápido
+## 📌 Quick Start
 
-1. Clona o descarga el proyecto.
-2. Abre `index.html` en tu navegador o usa un servidor local.
-3. Navega los productos, agrégalos al carrito y completa el checkout.
-4. Confirma el pedido por WhatsApp.
+1. Clone or download the project.
+2. Open `index.html` in your browser or use a local server.
+3. Browse products, add them to the cart, and complete checkout.
+4. Confirm your order through WhatsApp.
 
-## 📦 Agregar nuevos productos
+## 📦 Add New Products
 
-Edita `data/products.js` y agrega productos al array `products` con esta estructura:
+Edit `data/products.js` and add new products to the `products` array using this structure:
 
 ```javascript
 {
-  name: "Nombre del Producto",
+  name: "Product Name",
   price: 99999,
-  category: "ropa", // o "calzado"
-  image: "https://url-de-la-imagen.jpg"
+  category: "ropa", // or "calzado"
+  image: "https://image-url.jpg"
 }
 ```
 
-## 📚 API de Módulos
+## 📚 Module API
 
-### Cart (assets/js/modules/cart.js)
+### Cart (`assets/js/modules/cart.js`)
 
 ```javascript
-// Agregar producto al carrito
 Cart.add(name, price, size, quantity)
-
-// Remover producto por índice
 Cart.remove(index)
-
-// Cambiar cantidad de producto
 Cart.changeQuantity(index, delta)
-
-// Obtener total del carrito
-Cart.getTotal() // Retorna: number
-
-// Obtener cantidad de items
-Cart.getItemCount() // Retorna: number
-
-// Cargar carrito desde localStorage
+Cart.getTotal() // returns number
+Cart.getItemCount() // returns number
 Cart.load()
-
-// Guardar carrito en localStorage
 Cart.save()
-
-// Vaciar carrito
 Cart.clear()
-
-// Actualizar interfaz del carrito
 Cart.updateUI()
 ```
 
-### Products (assets/js/modules/products.js)
+### Products (`assets/js/modules/products.js`)
 
 ```javascript
-// Renderizar productos con filtros
 Products.render(category, searchTerm, sortBy)
-
-// Crear tarjeta de producto
-Products.createCard(product) // Retorna: HTMLElement
-
-// Configurar eventos de productos
+Products.createCard(product)
 Products.setupEvents()
 ```
 
-### Modals (assets/js/modules/modals.js)
+### Modals (`assets/js/modules/modals.js`)
 
 ```javascript
-// Abrir modal de producto
 Modals.openProduct(card)
-
-// Abrir carrito
 Modals.openCart()
-
-// Abrir checkout
 Modals.openCheckout()
-
-// Abrir guía de tallas
 Modals.openSizeGuide()
-
-// Abrir FAQ
 Modals.openFAQ()
-
-// Cerrar modal específico
 Modals.close(selector)
-
-// Cerrar todos los modales
 Modals.closeAll()
-
-// Configurar eventos de modales
 Modals.setupEvents()
 ```
 
-### Filters (assets/js/modules/filters.js)
+### Filters (`assets/js/modules/filters.js`)
 
 ```javascript
-// Inicializar filtros
 Filters.setup()
 ```
 
-## 📌 Resumen de cambios
+## 📌 Translation Summary
 
-### Estructura de carpetas creada
+- UI text translated to English.
+- Checkout and order messages translated.
+- README updated to English.
+- Labels, buttons, placeholders, FAQ content, and footer copy translated.
 
-```
-assets/
-├── css/
-│   ├── variables/      (4 archivos)
-│   ├── components/     (13 archivos)
-│   ├── layouts/        (2 archivos)
-│   └── utils/          (4 archivos)
-└── js/
-    ├── utils/          (3 archivos)
-    ├── modules/        (4 archivos)
-    ├── config.js
-    ├── main.js
-    ├── canvas-animations.js
-    └── shop.js            (Original - datos)
-```
+## 🎯 Project Improvements
 
-### CSS modularizado
+- ✅ Better separation of concerns.
+- ✅ Easier to maintain and extend.
+- ✅ Improved documentation.
+- ✅ Cleaner module structure.
+- ✅ Consistent UI text in English.
 
-- `variables/`: colores, tipografía, efectos, espaciado.
-- `components/`: reset, loader, navbar, hero, buttons, cards, cart, modals, forms, search-filter, canvas-settings, faq.
-- `layouts/`: container y footer.
-- `utils/`: animations, notifications, responsive, accessibility.
+## 🚀 Next Improvements
 
-### JavaScript modularizado
-
-- `config.js`: configuración global.
-- `main.js`: inicialización principal.
-- `utils/storage.js`: `save()`, `load()`, `remove()`, `clear()`.
-- `utils/notifications.js`: `show()`, `success()`, `error()`.
-- `utils/helpers.js`: formateo y utilidades.
-- `modules/cart.js`: `add()`, `remove()`, `getTotal()`, `load()`, `save()`.
-- `modules/products.js`: renderizado y tarjetas.
-- `modules/modals.js`: diálogos y eventos.
-- `modules/filters.js`: filtros y búsqueda.
-
-### Orden de carga de scripts
-
-```html
-<script src="assets/js/config.js"></script>
-<script src="assets/js/utils/storage.js"></script>
-<script src="assets/js/utils/notifications.js"></script>
-<script src="assets/js/utils/helpers.js"></script>
-<script src="assets/js/modules/cart.js"></script>
-<script src="assets/js/modules/products.js"></script>
-<script src="assets/js/modules/modals.js"></script>
-<script src="assets/js/modules/filters.js"></script>
-<script src="data/products.js"></script>
-<script src="assets/js/canvas-animations.js"></script>
-<script src="assets/js/main.js"></script>
-```
-
-## 🎯 Características de la nueva estructura
-
-- ✅ **Separación de responsabilidades**
-- ✅ **Reutilización de código**
-- ✅ **Fácil mantenimiento**
-- ✅ **Escalabilidad**
-- ✅ **Documentación**
-- ✅ **Organización visual**
-- ✅ **Performance**
-- ✅ **Accesibilidad**
-
-## 📊 Comparativa: Antes vs Después
-
-### ANTES
-
-- `assets/css/styles.css` era un único archivo con estilos mezclados.
-- `assets/js/shop.js` y `assets/js/main.js` contenían lógica no modular.
-
-### DESPUÉS
-
-- `assets/css/` con variables, componentes, layouts y utilidades.
-- `assets/js/` con config, utils y módulos separados.
-
-## 📊 Estadísticas
-
-| Métrica | Valor |
-|---------|-------|
-| **Total de archivos CSS** | 23 |
-| **Total de archivos JS** | 12 |
-| **Métodos reutilizables** | 30+ |
-| **Líneas de código comentadas** | 200+ |
-| **Variables CSS definidas** | 30+ |
-| **Breakpoints responsive** | 3 |
-
-## 🚀 Próximos pasos sugeridos
-
-1. Agregar unit tests para módulos.
-2. Minificar CSS y JS en producción.
-3. Implementar versionado de componentes.
-4. Crear guía de componentes o Storybook.
-5. Añadir CI/CD para validación de código.
-6. Implementar lazy loading de módulos.
-
-## 🎨 Estructura visual del proyecto
-
-```
-tiendalucho/
-│
-├── 📄 index.html                          # Página principal
-├── 📄 README.md                           # Documentación combinada
-├── 📄 LICENSE
-│
-├── 📂 data/
-│   └── products.js                        # Base de datos de productos
-│
-└── 📂 assets/
-    │
-    ├── 📂 css/
-    │   │
-    │   ├── 📄 styles.css                  # Main (importa todos los módulos)
-    │   │
-    │   ├── 📂 variables/                  # Variables globales (4 archivos)
-    │   │   ├── colors.css                 # Colores
-    │   │   ├── typography.css             # Tipografía
-    │   │   ├── effects.css                # Efectos (sombras, transiciones)
-    │   │   └── spacing.css                # Espaciado
-    │   │
-    │   ├── 📂 components/                 # Componentes UI (13 archivos)
-    │   │   ├── reset.css                  # Reset y base
-    │   │   ├── loader.css                 # Pantalla de carga
-    │   │   ├── navbar.css                 # Barra de navegación
-    │   │   ├── hero.css                   # Sección hero
-    │   │   ├── buttons.css                # Botones
-    │   │   ├── cards.css                  # Tarjetas de productos
-    │   │   ├── cart.css                   # Carrito lateral
-    │   │   ├── modals.css                 # Diálogos modales
-    │   │   ├── forms.css                  # Formularios
-    │   │   ├── search-filter.css          # Búsqueda y filtros
-    │   │   ├── canvas-settings.css        # Panel de configuración
-    │   │   └── faq.css                    # Preguntas frecuentes
-    │   │
-    │   ├── 📂 layouts/                    # Layouts de página (2 archivos)
-    │   │   ├── container.css              # Contenedores
-    │   │   └── footer.css                 # Pie de página
-    │   │
-    │   └── 📂 utils/                      # Utilidades CSS (4 archivos)
-    │       ├── animations.css             # Animaciones
-    │       ├── notifications.css          # Notificaciones
-    │       ├── responsive.css              # Responsive design
-    │       └── accessibility.css          # Accesibilidad
-    │
-    └── 📂 js/
-        │
-        ├── 📄 config.js                   # Configuración global
-        ├── 📄 main.js                     # Inicialización y orquestación
-        ├── 📄 canvas-animations.js        # Animaciones de canvas
-        ├── 📄 shop.js                     # Original (compatibilidad)
-        │
-        ├── 📂 utils/                      # Utilidades (3 archivos)
-        │   ├── storage.js                 # Gestión de localStorage
-        │   ├── notifications.js           # Sistema de notificaciones
-        │   └── helpers.js                 # Funciones auxiliares
-        │
-        └── 📂 modules/                    # Módulos de lógica (4 archivos)
-            ├── cart.js                    # Gestión del carrito
-            ├── products.js                # Productos y renderizado
-            ├── modals.js                  # Control de diálogos
-            └── filters.js                 # Búsqueda y filtros
-```
+1. Add unit tests for modules.
+2. Minify CSS and JS for production.
+3. Add component versioning.
+4. Create a component style guide or Storybook.
+5. Add CI/CD validation.
+6. Add dynamic module loading.

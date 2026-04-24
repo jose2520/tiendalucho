@@ -1,15 +1,15 @@
 /**
- * MODULES/PRODUCTS.JS - GESTIÓN DE PRODUCTOS
- * Maneja el renderizado, búsqueda y filtrado de productos.
- * Crea las tarjetas de productos dinámicamente.
+ * MODULES/PRODUCTS.JS - PRODUCT MANAGEMENT
+ * Handles rendering, search, and filtering of products.
+ * Creates product cards dynamically.
  */
 
 const Products = {
     /**
-     * Renderiza los productos en la grilla según filtros
-     * @param {string} category - Categoría a filtrar
-     * @param {string} searchTerm - Término de búsqueda
-     * @param {string} sortBy - Criterio de ordenamiento
+     * Renders products in the grid using current filters
+     * @param {string} category - Category to filter
+     * @param {string} searchTerm - Search query
+     * @param {string} sortBy - Sort criteria
      */
     render: function(category = 'all', searchTerm = '', sortBy = 'name-asc') {
         const grid = document.getElementById('products-container');
@@ -17,20 +17,20 @@ const Products = {
 
         grid.innerHTML = '';
         
-        // Filtrar por categoría
+        // Filter by category
         let filteredProducts = products;
         if (category !== 'all') {
             filteredProducts = products.filter(p => p.category === category);
         }
 
-        // Filtrar por búsqueda
+        // Filter by search
         if (searchTerm) {
             filteredProducts = filteredProducts.filter(p => 
                 p.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
 
-        // Ordenar productos
+        // Sort products
         filteredProducts.sort((a, b) => {
             switch (sortBy) {
                 case 'name-asc':
@@ -46,7 +46,7 @@ const Products = {
             }
         });
 
-        // Renderizar tarjetas
+        // Render cards
         if (filteredProducts.length === 0) {
             grid.innerHTML = `
                 <p style="text-align:center; opacity:0.5; padding: 40px; grid-column: 1 / -1;">
@@ -60,16 +60,16 @@ const Products = {
             });
             
             const countText = filteredProducts.length === 1 
-                ? '1 producto encontrado' 
-                : `${filteredProducts.length} productos encontrados`;
+                ? '1 product found' 
+                : `${filteredProducts.length} products found`;
             document.getElementById('products-count').textContent = countText;
         }
     },
 
     /**
-     * Crea una tarjeta de producto
-     * @param {Object} product - Objeto del producto
-     * @returns {HTMLElement} Elemento de la tarjeta
+     * Creates a product card element
+     * @param {Object} product - Product object
+     * @returns {HTMLElement} Card element
      */
     createCard: function(product) {
         const article = document.createElement('article');
@@ -85,17 +85,17 @@ const Products = {
             </div>
             <h3>${product.name}</h3>
             <span class="price">COP $${product.price.toLocaleString()}</span>
-            <button class="btn-add btn-buy">Añadir al Carrito</button>
+            <button class="btn-add btn-buy">Add to Cart</button>
         `;
         
         return article;
     },
 
     /**
-     * Configura los eventos de las tarjetas de productos
+     * Configures product card events
      */
     setupEvents: function() {
-        // Click en tarjeta para abrir modal
+        // Click on card opens product modal
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('click', (e) => {
                 if (e.target.classList.contains('btn-buy')) return;
@@ -103,7 +103,7 @@ const Products = {
             });
         });
 
-        // Click en botón de compra rápida
+        // Quick buy button
         document.querySelectorAll('.card .btn-buy').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.stopPropagation();

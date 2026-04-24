@@ -4,10 +4,16 @@
  */
 
 footer {
-    background: var(--dark);
-    color: var(--light);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-color);
     padding: var(--spacing-2xl) 5% var(--spacing-xl);
     margin-top: var(--spacing-4xl);
+}
+
+[data-theme="dark"] footer {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
 }
 
 .footer-content {

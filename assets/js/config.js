@@ -1,43 +1,43 @@
 /**
- * CONFIG.JS - CONFIGURACIÓN GLOBAL
- * Centraliza constantes y configuración que se usan en toda la aplicación.
- * Facilita cambios globales sin modificar múltiples archivos.
+ * CONFIG.JS - GLOBAL CONFIGURATION
+ * Centralizes constants and settings used throughout the application.
+ * Makes global updates easier without editing multiple files.
  */
 
 const CONFIG = {
-    // Tallas disponibles por categoría
+    // Sizes available by category
     sizes: {
         ropa: ['S', 'M', 'L', 'XL'],
         calzado: ['38', '39', '40', '41', '42']
     },
     
-    // Claves de localStorage
+    // localStorage keys
     storage: {
         CART_KEY: 'luchoDIAZCart',
         CANVAS_SETTINGS_KEY: 'luchoDIAZCanvasSettings_v1'
     },
     
-    // Moneda y formato
+    // Currency and format
     currency: {
         symbol: 'COP $',
         locale: 'es-CO'
     },
     
-    // Contacto WhatsApp
+    // WhatsApp contact
     whatsapp: {
         phoneNumber: '573044359009',
         baseUrl: 'https://wa.me/'
     },
     
-    // Mensajes
+    // Messages
     messages: {
-        cartEmpty: 'Tu bolsa está vacía',
-        emptySearch: 'No se encontraron productos que coincidan con tu búsqueda.',
-        selectSize: 'Por favor, selecciona una talla.'
+        cartEmpty: 'Your bag is empty',
+        emptySearch: 'No products matched your search.',
+        selectSize: 'Please select a size.'
     }
 };
 
-// Exportar para uso en otros módulos (si se usa módulos ES6)
+// Export for other modules (if using ES6 modules)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = CONFIG;
 }

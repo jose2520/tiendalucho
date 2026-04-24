@@ -20,8 +20,31 @@
     display: flex;
 }
 
+/**
+ * COMPONENTE MODALS
+ * Estilos para todos los diálogos modales (productos, checkout, guía de tallas, FAQ).
+ * Se superponen en la pantalla con fondo oscuro.
+ */
+
+.product-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: var(--z-modal);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-md);
+}
+
+.product-modal.active {
+    display: flex;
+}
+
 .modal-content {
-    background: var(--light);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
     width: 100%;
     max-width: 850px;
     border-radius: 25px;

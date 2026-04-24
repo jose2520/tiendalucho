@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LuchoDIAZ Shop - tienda online de productos deportivos, jerseys, calzado y accesorios para aficionados al fútbol.">
-    <meta name="keywords" content="LuchoDIAZ, deportes, fútbol, jerseys, calzado deportivo, tienda online, accesorios deportivos">
+    <meta name="description" content="LuchoDIAZ Shop - online sports store for jerseys, footwear, and accessories for soccer fans.">
+    <meta name="keywords" content="LuchoDIAZ, sports, soccer, jerseys, athletic shoes, online store, sports accessories">
     <meta name="author" content="LuchoDIAZ Shop">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="LuchoDIAZ Shop - Tienda Oficial">
-    <meta property="og:description" content="Descubre la colección exclusiva de productos deportivos de LuchoDIAZ Shop. Envíos a todo Colombia.">
+    <meta property="og:title" content="LuchoDIAZ Shop - Official Store">
+    <meta property="og:description" content="Discover the exclusive sports collection from LuchoDIAZ Shop. Shipping across Colombia.">
     <meta name="twitter:card" content="summary_large_image">
-    <title>LuchoDIAZ Shop | Tienda Oficial</title>
+    <title>LuchoDIAZ Shop | Store</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -19,18 +19,21 @@
 
     <div id="loader"><div class="spinner"></div></div>
 
-    <header class="navbar">
-        <a href="#" class="logo">LUCHODIAZ</a>
-        <nav>
+    <header class="navbar" role="banner">
+        <a href="#" class="logo" aria-label="Go to homepage - LuchoDIAZ Shop">LUCHODIAZ</a>
+        <nav role="navigation" aria-label="Main menu">
             <ul class="nav-links">
-                <li><a href="#tienda">Tienda</a></li>
-                <li><a href="#" data-open-modal="size-guide">Tallas</a></li>
-                <li><a href="#tienda">Colección</a></li>
+                <li><a href="#tienda">Shop</a></li>
+                <li><a href="#" data-open-modal="size-guide" aria-label="View size guide">Sizes</a></li>
+                <li><a href="#tienda">Collection</a></li>
             </ul>
         </nav>
-        <button class="cart-trigger" id="open-cart">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span class="badge" id="cart-count">0</span>
+        <button class="cart-trigger" id="open-cart" aria-label="Open shopping cart">
+            <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+            <span class="badge" id="cart-count" aria-label="Number of items in cart">0</span>
+        </button>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon" aria-hidden="true"></i>
         </button>
     </header>
 
@@ -38,7 +41,7 @@
 
     <aside class="cart-drawer" id="cart-modal">
         <div class="cart-header">
-            <h2>TU BOLSA</h2>
+            <h2>YOUR BAG</h2>
             <button id="close-cart" class="cart-close-btn">×</button>
         </div>
         <div id="cart-items"></div>
@@ -47,45 +50,45 @@
                 <span>Total:</span>
                 <span class="price">COP $<span id="total-price">0</span></span>
             </div>
-            <button id="checkout-btn" class="btn-add" style="margin-top: 1.5rem; background: var(--primary); padding: 15px;">PAGAR AHORA</button>
+            <button id="checkout-btn" class="btn-add" style="margin-top: 1.5rem; background: var(--primary); padding: 15px;">CHECKOUT NOW</button>
         </div>
     </aside>
 
     <main>
         <section class="hero">
             <canvas id="hero-canvas" aria-hidden="true"></canvas>
-            <h1>VIVE LA PASIÓN DEL FÚTBOL</h1>
-            <p>Descubre la colección exclusiva diseñada para los aficionados del deporte rey.</p>
-            <a href="#tienda" class="btn-add" style="width: auto; padding: 15px 50px; text-decoration: none; border-radius: 50px;">COMPRAR AHORA</a>
+            <h1>LIVE THE SOCCER PASSION</h1>
+            <p>Discover the exclusive collection designed for soccer fans.</p>
+            <a href="#tienda" class="btn-add" style="width: auto; padding: 15px 50px; text-decoration: none; border-radius: 50px;">SHOP NOW</a>
         </section>
 
         <section id="tienda" class="container">
             <canvas id="particles-canvas" aria-hidden="true"></canvas>
-            <h2 class="section-title">NUESTRA COLECCIÓN</h2>
+            <h2 class="section-title">OUR COLLECTION</h2>
             
-            <!-- Barra de búsqueda y ordenamiento -->
+            <!-- Search and sort bar -->
             <div class="search-sort-bar">
                 <div class="search-wrapper">
                     <i class="fa-solid fa-search"></i>
-                    <input type="text" id="search-input" placeholder="Buscar productos..." class="search-input">
+                    <input type="text" id="search-input" placeholder="Search products..." class="search-input">
                 </div>
                 <select id="sort-select" class="sort-select">
-                    <option value="name-asc">Nombre A-Z</option>
-                    <option value="name-desc">Nombre Z-A</option>
-                    <option value="price-asc">Precio menor a mayor</option>
-                    <option value="price-desc">Precio mayor a menor</option>
+                    <option value="name-asc">Name A-Z</option>
+                    <option value="name-desc">Name Z-A</option>
+                    <option value="price-asc">Price low to high</option>
+                    <option value="price-desc">Price high to low</option>
                 </select>
             </div>
             
-            <!-- Filtros de categoría -->
+            <!-- Category filters -->
             <div class="category-filters">
-                <button class="filter-btn active" data-category="all">Todos los Productos</button>
-                <button class="filter-btn" data-category="calzado">Calzado Deportivo</button>
-                <button class="filter-btn" data-category="ropa">Ropa & Accesorios</button>
+                <button class="filter-btn active" data-category="all">All Products</button>
+                <button class="filter-btn" data-category="calzado">Sports Footwear</button>
+                <button class="filter-btn" data-category="ropa">Apparel & Accessories</button>
             </div>
             
             <div class="products-grid" id="products-container">
-                <!-- Productos se renderizan dinámicamente desde shop.js -->
+                <!-- Products are rendered dynamically from shop.js -->
             </div>
             <div id="products-count" style="text-align: center; margin-top: 20px; opacity: 0.7; font-size: 0.9rem;"></div>
         </section>
@@ -96,16 +99,16 @@
             <button id="close-modal" class="modal-close-btn">×</button>
             <div class="modal-img"><img src="" id="modal-img-target"></div>
             <div class="modal-details">
-                <span class="modal-category">Exclusivo</span>
-                <h2 id="modal-name">Producto</h2>
-                <p id="modal-desc" class="modal-desc">Calidad élite para los verdaderos fans.</p>
+                <span class="modal-category">Exclusive</span>
+                <h2 id="modal-name">Product</h2>
+                <p id="modal-desc" class="modal-desc">Elite quality for true fans.</p>
                 
                 <div class="modal-features">
                     <div class="feature-item"><i class="fa-solid fa-check"></i> Original</div>
-                    <div class="feature-item"><i class="fa-solid fa-truck"></i> Envío Nacional</div>
+                    <div class="feature-item"><i class="fa-solid fa-truck"></i> National Shipping</div>
                 </div>
 
-                <h3 class="modal-size-title">Selecciona Talla:</h3>
+                <h3 class="modal-size-title">Select Size:</h3>
                 <div class="size-selector" id="modal-sizes"></div>
 
                 <div class="modal-price-section">
@@ -119,7 +122,7 @@
                     <button class="qty-btn" onclick="updateQty(1)">+</button>
                 </div>
 
-                <button class="btn-add" id="modal-add-to-cart">AÑADIR AL CARRITO</button>
+                <button class="btn-add" id="modal-add-to-cart">ADD TO CART</button>
             </div>
         </div>
     </div>
@@ -128,77 +131,77 @@
         <div class="modal-content checkout-modal-content">
             <button id="close-checkout" class="modal-close-btn">×</button>
             <div class="modal-details checkout-modal-details">
-                <h2 class="checkout-title">DATOS DE ENVÍO</h2>
-                <p class="checkout-subtitle">Completa tus datos para procesar el pedido vía WhatsApp.</p>
+                <h2 class="checkout-title">SHIPPING DETAILS</h2>
+                <p class="checkout-subtitle">Complete your details to process the order via WhatsApp.</p>
                 
                 <form id="checkout-form">
                     <div class="checkout-grid">
                         <div class="checkout-form-group">
-                            <label class="checkout-label">Nombre Completo</label>
+                            <label class="checkout-label">Full Name</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-user"></i>
-                                <input type="text" id="cust-name" class="checkout-input" placeholder="Ej: Juan Pérez" required autofocus>
+                                <input type="text" id="cust-name" class="checkout-input" placeholder="Ex: John Doe" required autofocus>
                             </div>
                         </div>
                         <div class="checkout-form-group">
-                            <label class="checkout-label">WhatsApp (Celular)</label>
+                            <label class="checkout-label">WhatsApp (Mobile)</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-phone"></i>
-                                <input type="tel" id="cust-phone" class="checkout-input" placeholder="3001234567" required maxlength="10" inputmode="numeric" pattern="[0-9]{10}" title="Ingresa 10 dígitos sin espacios">
+                                <input type="tel" id="cust-phone" class="checkout-input" placeholder="3001234567" required maxlength="10" inputmode="numeric" pattern="[0-9]{10}" title="Enter 10 digits without spaces">
                             </div>
                         </div>
                     </div>
 
                     <div class="checkout-form-group">
-                        <label class="checkout-label">Correo Electrónico (opcional)</label>
+                        <label class="checkout-label">Email (optional)</label>
                         <div class="input-wrapper">
                             <i class="fa-solid fa-envelope"></i>
-                            <input type="email" id="cust-email" class="checkout-input" placeholder="ejemplo@correo.com">
+                            <input type="email" id="cust-email" class="checkout-input" placeholder="example@email.com">
                         </div>
                     </div>
 
                     <div class="checkout-form-group">
-                        <label class="checkout-label">Dirección de Entrega</label>
+                        <label class="checkout-label">Delivery Address</label>
                         <div class="input-wrapper">
                             <i class="fa-solid fa-location-dot"></i>
-                            <input type="text" id="cust-address" class="checkout-input" placeholder="Calle, Número, Barrio" required>
+                            <input type="text" id="cust-address" class="checkout-input" placeholder="Street, Number, Neighborhood" required>
                         </div>
                     </div>
 
                     <div class="checkout-grid">
                         <div class="checkout-form-group">
-                            <label class="checkout-label">Ciudad</label>
+                            <label class="checkout-label">City</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-city"></i>
-                                <input type="text" id="cust-city" class="checkout-input" placeholder="Ej: Barranquilla" required>
+                                <input type="text" id="cust-city" class="checkout-input" placeholder="Ex: Bogotá" required>
                             </div>
                         </div>
                         <div class="checkout-form-group">
-                            <label class="checkout-label">Método de Pago</label>
+                            <label class="checkout-label">Payment Method</label>
                             <div class="input-wrapper">
                                 <i class="fa-solid fa-credit-card"></i>
                                 <select id="cust-payment" class="checkout-input" style="padding-left: 35px;" required>
-                                    <option value="Pago contra entrega">Pago contra entrega</option>
-                                    <option value="Transferencia Nequi/Bancolombia">Transferencia Nequi/Bancolombia</option>
+                                    <option value="Cash on Delivery">Cash on Delivery</option>
+                                    <option value="Bank Transfer (Nequi/Bancolombia)">Bank Transfer (Nequi/Bancolombia)</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="checkout-form-group">
-                        <label class="checkout-label">Notas del Pedido (opcional)</label>
-                        <textarea id="cust-notes" class="checkout-input checkout-textarea" placeholder="Ej: Dejar en portería si no estoy presente"></textarea>
+                        <label class="checkout-label">Order Notes (optional)</label>
+                        <textarea id="cust-notes" class="checkout-input checkout-textarea" placeholder="Ex: Leave at reception if I am not present"></textarea>
                     </div>
 
                     <div class="checkout-total-box">
                         <div class="checkout-total-row">
-                            <span class="label">Total del Pedido:</span>
+                            <span class="label">Order Total:</span>
                             <span class="price">COP $<span id="checkout-total-price">0</span></span>
                         </div>
                     </div>
 
                     <button type="submit" id="submit-order" class="btn-add" style="margin-top: 2rem; background: #25d366; font-size: 1.1rem; padding: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 50px;">
-                        <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> CONFIRMAR POR WHATSAPP
+                        <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> CONFIRM VIA WHATSAPP
                     </button>
                 </form>
             </div>
@@ -209,12 +212,12 @@
         <div class="modal-content" style="grid-template-columns: 1fr; max-width: 700px;">
             <button id="close-size-guide" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; z-index:10">×</button>
             <div class="modal-details">
-                <span class="modal-category">Guía de Tallas</span>
-                <h2>Tallas de Pantalón, Camisa y Calzado</h2>
-                <p>Elige tu talla ideal con nuestra guía rápida para tallas de ropa y calzado.</p>
+                <span class="modal-category">Size Guide</span>
+                <h2>Pants, Shirt and Footwear Sizes</h2>
+                <p>Choose your ideal fit with our quick size guide for apparel and footwear.</p>
                 <div class="modal-list">
                     <div>
-                        <h3>Pantalón</h3>
+                        <h3>Pants</h3>
                         <ul>
                             <li>S: 72-76 cm</li>
                             <li>M: 77-82 cm</li>
@@ -223,16 +226,16 @@
                         </ul>
                     </div>
                     <div>
-                        <h3>Camisa / Jersey</h3>
+                        <h3>Shirt / Jersey</h3>
                         <ul>
-                            <li>S: Pecho 88-94 cm</li>
-                            <li>M: Pecho 95-101 cm</li>
-                            <li>L: Pecho 102-108 cm</li>
-                            <li>XL: Pecho 109-115 cm</li>
+                            <li>S: Chest 88-94 cm</li>
+                            <li>M: Chest 95-101 cm</li>
+                            <li>L: Chest 102-108 cm</li>
+                            <li>XL: Chest 109-115 cm</li>
                         </ul>
                     </div>
                     <div>
-                        <h3>Calzado</h3>
+                        <h3>Footwear</h3>
                         <ul>
                             <li>38</li>
                             <li>39</li>
@@ -250,29 +253,29 @@
         <div class="modal-content" style="grid-template-columns: 1fr; max-width: 700px;">
             <button id="close-faq" style="position:absolute; top:20px; right:20px; background:none; border:none; font-size:1.5rem; cursor:pointer; z-index:10">×</button>
             <div class="modal-details">
-                <span class="modal-category">Preguntas Frecuentes</span>
-                <h2>Resuelve tus dudas</h2>
+                <span class="modal-category">FAQ</span>
+                <h2>Get your questions answered</h2>
                 <div class="faq-item">
-                    <strong>¿Cómo funciona el envío?</strong>
-                    <p>Realizamos envíos a todo Colombia en 3-5 días hábiles, con seguimiento desde que confirmas tu pedido.</p>
+                    <strong>How does shipping work?</strong>
+                    <p>We ship across Colombia in 3-5 business days, with tracking once your order is confirmed.</p>
                 </div>
                 <div class="faq-item">
-                    <strong>¿Puedo cambiar mi talla?</strong>
-                    <p>Si tu talla no queda perfecta, te ayudamos con cambio o devolución según disponibilidad.</p>
+                    <strong>Can I exchange my size?</strong>
+                    <p>If your size does not fit perfectly, we assist with exchanges or returns based on availability.</p>
                 </div>
                 <div class="faq-item">
-                    <strong>¿Cuál es el método de pago?</strong>
-                    <p>Aceptamos pago contra entrega y transferencias por Nequi o Bancolombia.</p>
+                    <strong>What payment methods are available?</strong>
+                    <p>We accept cash on delivery and transfers via Nequi or Bancolombia.</p>
                 </div>
                 <form id="faq-form" class="faq-form">
-                    <h3>¿Tienes otra pregunta?</h3>
-                    <label>Nombre</label>
-                    <input type="text" id="faq-name" placeholder="Tu nombre" required>
-                    <label>Correo</label>
-                    <input type="email" id="faq-email" placeholder="ejemplo@correo.com" required>
-                    <label>Pregunta</label>
-                    <textarea id="faq-question" placeholder="Escribe tu pregunta aquí" required></textarea>
-                    <button type="submit" class="btn-add" style="margin-top: 1rem; width: 100%;">Enviar pregunta</button>
+                    <h3>Have another question?</h3>
+                    <label>Name</label>
+                    <input type="text" id="faq-name" placeholder="Your name" required>
+                    <label>Email</label>
+                    <input type="email" id="faq-email" placeholder="example@email.com" required>
+                    <label>Question</label>
+                    <textarea id="faq-question" placeholder="Write your question here" required></textarea>
+                    <button type="submit" class="btn-add" style="margin-top: 1rem; width: 100%;">Send question</button>
                 </form>
             </div>
         </div>
@@ -281,43 +284,43 @@
     <a href="https://wa.me/573044359009" class="whatsapp-float" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 
     <!-- Canvas settings control -->
-    <button id="canvas-settings-btn" aria-expanded="false" aria-label="Ajustes de animación" class="canvas-settings-btn">
+    <button id="canvas-settings-btn" aria-expanded="false" aria-label="Animation settings" class="canvas-settings-btn">
         <i class="fa-solid fa-sliders"></i>
     </button>
     <div id="canvas-settings-panel" class="canvas-settings-panel" aria-hidden="true">
-        <h4>Animaciones</h4>
+        <h4>Animations</h4>
         <div class="cs-row"><label><input type="checkbox" id="toggle-hero" checked> Hero</label></div>
-        <div class="cs-row"><label><input type="checkbox" id="toggle-particles" checked> Partículas</label></div>
-        <div class="cs-row"><label>Intensidad partículas</label>
+        <div class="cs-row"><label><input type="checkbox" id="toggle-particles" checked> Particles</label></div>
+        <div class="cs-row"><label>Particle intensity</label>
             <input type="range" id="particles-density" min="20" max="140" value="80"></div>
         <div class="cs-row presets-row">
             <label>Presets</label>
             <div class="presets">
-                <button type="button" class="preset-btn" data-preset="light">Ligero</button>
-                <button type="button" class="preset-btn" data-preset="balanced">Equilibrado</button>
-                <button type="button" class="preset-btn" data-preset="max">Máximo</button>
+                <button type="button" class="preset-btn" data-preset="light">Light</button>
+                <button type="button" class="preset-btn" data-preset="balanced">Balanced</button>
+                <button type="button" class="preset-btn" data-preset="max">Max</button>
             </div>
         </div>
-        <div class="cs-row"><button id="reset-canvas-settings" class="btn-add">Restablecer</button></div>
+        <div class="cs-row"><button id="reset-canvas-settings" class="btn-add">Reset</button></div>
     </div>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <a href="#" class="logo">LUCHODIAZ</a>
-                <p style="margin-top:1rem; opacity:0.6; font-size:0.9rem">Tienda de artículos deportivos y accesorios para aficionados. Envíos a todo el país.</p>
+                <p style="margin-top:1rem; opacity:0.6; font-size:0.9rem">Sports gear and accessories store for fans. Nationwide shipping.</p>
             </div>
             <div class="footer-section">
-                <h4>Explorar</h4>
+                <h4>Explore</h4>
                 <ul>
-                    <li><a href="#tienda">Colección 2026</a></li>
-                    <li><a href="#" class="footer-link-action" data-open-modal="size-guide">Guía de Tallas</a></li>
-                    <li><a href="#" class="footer-link-action" data-open-modal="faq">Preguntas Frecuentes</a></li>
-                    <li><a href="#tienda">Envíos y Devoluciones</a></li>
+                    <li><a href="#tienda">Collection 2026</a></li>
+                    <li><a href="#" class="footer-link-action" data-open-modal="size-guide">Size Guide</a></li>
+                    <li><a href="#" class="footer-link-action" data-open-modal="faq">FAQ</a></li>
+                    <li><a href="#tienda">Shipping & Returns</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Contacto</h4>
+                <h4>Contact</h4>
                 <ul>
                     <li><i class="fa-solid fa-envelope"></i> ventas@luchoDIAZ.shop</li>
                     <li><i class="fa-solid fa-phone"></i> +57 304 435 9009</li>
@@ -330,29 +333,29 @@
         </div>
     </footer>
 
-    <!-- ========== SCRIPTS MODULARIZADOS ========== -->
+    <!-- ========== MODULAR SCRIPTS ========== -->
     
-    <!-- CONFIGURACIÓN GLOBAL -->
+    <!-- GLOBAL CONFIG -->
     <script src="assets/js/config.js"></script>
     
-    <!-- UTILIDADES (helpers y funciones auxiliares) -->
+    <!-- UTILITIES (helpers and auxiliary functions) -->
     <script src="assets/js/utils/storage.js"></script>
     <script src="assets/js/utils/notifications.js"></script>
     <script src="assets/js/utils/helpers.js"></script>
     
-    <!-- MÓDULOS (lógica de negocio) -->
+    <!-- MODULES (business logic) -->
     <script src="assets/js/modules/cart.js"></script>
     <script src="assets/js/modules/products.js"></script>
     <script src="assets/js/modules/modals.js"></script>
     <script src="assets/js/modules/filters.js"></script>
     
-    <!-- DATOS (productos) -->
+    <!-- DATA (products) -->
     <script src="data/products.js"></script>
     
-    <!-- ANIMACIONES Y EFECTOS -->
+    <!-- ANIMATIONS AND EFFECTS -->
     <script src="assets/js/canvas-animations.js"></script>
     
-    <!-- INICIALIZACIÓN PRINCIPAL -->
+    <!-- MAIN INITIALIZATION -->
     <script src="assets/js/main.js"></script>
 </body>
 </html>

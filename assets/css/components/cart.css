@@ -24,9 +24,10 @@
     width: 100%;
     max-width: 400px;
     height: 100%;
-    background: var(--light);
+    background: var(--bg-primary);
+    border-left: 1px solid var(--border-color);
     z-index: var(--z-modal);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    box-shadow: -10px 0 30px var(--shadow-color);
     transition: var(--transition);
     display: flex;
     flex-direction: column;

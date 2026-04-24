@@ -1,11 +1,10 @@
 /**
- * MODULES/FILTERS.JS - FILTROS Y BÚSQUEDA
- * Maneja la búsqueda y filtrado de productos.
- * Coordina entre búsqueda, categorías y ordenamiento.
+ * MODULES/FILTERS.JS - FILTERS AND SEARCH
+ * Handles product search and filtering.
+ * Coordinates category buttons, search input, and sorting.
  */
 
 const Filters = {
-    // Estado actual de filtros
     state: {
         category: 'all',
         searchTerm: '',
@@ -13,7 +12,7 @@ const Filters = {
     },
 
     /**
-     * Configura los eventos de filtros y búsqueda
+     * Sets up filter and search events
      */
     setup: function() {
         this.setupCategoryButtons();
@@ -22,30 +21,23 @@ const Filters = {
     },
 
     /**
-     * Configura botones de categoría
+     * Sets up category buttons
      */
     setupCategoryButtons: function() {
         const buttons = document.querySelectorAll('.filter-btn');
         
         buttons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remover clase active de todos
                 buttons.forEach(btn => btn.classList.remove('active'));
-                
-                // Agregar clase active al clickeado
                 button.classList.add('active');
-                
-                // Actualizar estado
                 this.state.category = button.dataset.category;
-                
-                // Renderizar
                 this.render();
             });
         });
     },
 
     /**
-     * Configura input de búsqueda
+     * Sets up search input
      */
     setupSearchInput: function() {
         const searchInput = document.getElementById('search-input');
@@ -59,7 +51,7 @@ const Filters = {
     },
 
     /**
-     * Configura select de ordenamiento
+     * Sets up sort select
      */
     setupSortSelect: function() {
         const sortSelect = document.getElementById('sort-select');
@@ -73,7 +65,7 @@ const Filters = {
     },
 
     /**
-     * Renderiza productos con los filtros actuales
+     * Renders products using current filters
      */
     render: function() {
         Products.render(

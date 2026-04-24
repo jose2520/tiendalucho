@@ -8,18 +8,19 @@
     position: sticky;
     top: 0;
     z-index: var(--z-sticky);
-    background: rgba(18, 18, 18, 0.95);
+    background: var(--bg-primary);
     backdrop-filter: blur(10px);
     padding: var(--spacing-lg) 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .logo {
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-2xl);
-    color: var(--light);
+    color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -1px;
 }
@@ -35,7 +36,7 @@
 }
 
 .nav-links a {
-    color: var(--light);
+    color: var(--text-primary);
     text-decoration: none;
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
@@ -47,6 +48,25 @@
 .nav-links a:hover {
     opacity: 1;
     color: var(--primary);
+}
+
+/* Botón de alternancia de tema */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: 50%;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-secondary);
 }
 
 .cart-trigger {

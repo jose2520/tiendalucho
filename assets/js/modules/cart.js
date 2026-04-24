@@ -1,20 +1,20 @@
 /**
- * MODULES/CART.JS - GESTIÓN DEL CARRITO
- * Maneja todas las operaciones del carrito de compras.
- * Incluye: agregar, eliminar, actualizar cantidad, guardar, cargar.
+ * MODULES/CART.JS - CART MANAGEMENT
+ * Handles all shopping cart operations.
+ * Includes: add, remove, update quantity, save, load.
  */
 
 let cart = [];
 
 const Cart = {
     /**
-     * Agrega un producto al carrito o aumenta su cantidad
-     * @param {string} name - Nombre del producto
-     * @param {number} price - Precio del producto
-     * @param {string} size - Talla seleccionada
-     * @param {number} quantity - Cantidad a agregar
+     * Adds a product to the cart or increases quantity
+     * @param {string} name - Product name
+     * @param {number} price - Product price
+     * @param {string} size - Selected size
+     * @param {number} quantity - Quantity to add
      */
-    add: function(name, price, size = "Única", quantity = 1) {
+    add: function(name, price, size = "One Size", quantity = 1) {
         const parsedPrice = parseFloat(price);
         
         if (Number.isNaN(parsedPrice) || quantity < 1) return;
@@ -32,13 +32,13 @@ const Cart = {
         this.save();
         this.updateUI();
         Notification.success(
-            `${name} agregado al carrito (${quantity} ${quantity === 1 ? 'unidad' : 'unidades'})`
+            `${name} added to cart (${quantity} ${quantity === 1 ? 'unit' : 'units'})`
         );
     },
 
     /**
-     * Elimina un producto del carrito por índice
-     * @param {number} index - Índice del producto
+     * Removes a product from the cart by index
+     * @param {number} index - Product index
      */
     remove: function(index) {
         if (index < 0 || index >= cart.length) return;
@@ -48,13 +48,13 @@ const Cart = {
         
         this.save();
         this.updateUI();
-        Notification.success(`${item.name} eliminado del carrito`);
+        Notification.success(`${item.name} removed from cart`);
     },
 
     /**
-     * Cambia la cantidad de un producto
-     * @param {number} index - Índice del producto
-     * @param {number} delta - Cambio en cantidad (+1, -1, etc)
+     * Changes quantity of a cart item
+     * @param {number} index - Product index
+     * @param {number} delta - Quantity change (+1, -1)
      */
     changeQuantity: function(index, delta) {
         if (index < 0 || index >= cart.length) return;
@@ -71,35 +71,35 @@ const Cart = {
     },
 
     /**
-     * Obtiene el total del carrito
-     * @returns {number} Total en pesos
+     * Gets the cart total
+     * @returns {number} Total price
      */
     getTotal: function() {
         return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     },
 
     /**
-     * Obtiene la cantidad total de items
-     * @returns {number} Cantidad total
+     * Gets total item count
+     * @returns {number} Total item count
      */
     getItemCount: function() {
         return cart.reduce((sum, item) => sum + item.quantity, 0);
     },
 
     /**
-     * Guarda el carrito en localStorage
+     * Saves the cart to localStorage
      */
     save: function() {
         StorageUtil.save(CONFIG.storage.CART_KEY, cart);
     },
 
     /**
-     * Carga el carrito desde localStorage
+     * Loads the cart from localStorage
      */
     load: function() {
         cart = StorageUtil.load(CONFIG.storage.CART_KEY, []);
         
-        // Normalizar cantidad
+        // Normalize quantity
         cart = cart.map(item => ({
             ...item,
             quantity: item.quantity && item.quantity > 0 ? item.quantity : 1
@@ -109,7 +109,7 @@ const Cart = {
     },
 
     /**
-     * Vacía el carrito
+     * Clears the cart
      */
     clear: function() {
         cart = [];
@@ -118,21 +118,21 @@ const Cart = {
     },
 
     /**
-     * Obtiene los items del carrito
-     * @returns {Array} Array de items del carrito
+     * Returns cart items
+     * @returns {Array} Array of cart items
      */
     getItems: function() {
         return cart;
     },
 
     /**
-     * Actualiza la interfaz del carrito
+     * Updates the cart UI
      */
     updateUI: function() {
         const cartItemsEl = document.getElementById('cart-items');
         if (!cartItemsEl) return;
 
-        // Mostrar carrito vacío
+        // Show empty cart message
         if (cart.length === 0) {
             cartItemsEl.innerHTML = `
                 <p style="text-align:center; opacity:0.5; padding: 20px;">
@@ -140,7 +140,6 @@ const Cart = {
                 </p>
             `;
         } else {
-            // Renderizar items
             cartItemsEl.innerHTML = '';
             cart.forEach((item, i) => {
                 const itemEl = document.createElement('div');
@@ -150,11 +149,11 @@ const Cart = {
                         <div>
                             <h4 style="font-size:0.8rem; margin-bottom: 0.3rem;">${item.name} (${item.size})</h4>
                             <div class="cart-item-meta">
-                                <span>Cantidad: ${item.quantity}</span>
-                                <span>Precio unidad: COP $${item.price.toLocaleString()}</span>
+                                <span>Quantity: ${item.quantity}</span>
+                                <span>Unit price: COP $${item.price.toLocaleString()}</span>
                             </div>
                         </div>
-                        <button onclick="Cart.remove(${i})" style="color:var(--primary); background:none; border:none; cursor:pointer; font-weight:600">Eliminar</button>
+                        <button onclick="Cart.remove(${i})" style="color:var(--primary); background:none; border:none; cursor:pointer; font-weight:600">Remove</button>
                     </div>
                     <div class="cart-item-controls">
                         <button onclick="Cart.changeQuantity(${i}, -1)">-</button>
@@ -167,7 +166,6 @@ const Cart = {
             });
         }
 
-        // Actualizar badge y totales
         const countEl = document.getElementById('cart-count');
         if (countEl) countEl.innerText = this.getItemCount();
 
@@ -182,8 +180,8 @@ const Cart = {
     }
 };
 
-// Alias para mantener compatibilidad
-function addToCart(name, price, size = "Única", quantity = 1) {
+// Compatibility aliases
+function addToCart(name, price, size = "One Size", quantity = 1) {
     Cart.add(name, price, size, quantity);
 }
 

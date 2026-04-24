@@ -39,4 +39,24 @@
 @import './utils/responsive.css';
 @import './utils/accessibility.css';
 
+/* ========== ESTILOS BASE ========== */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 /* --- LOADER --- */
