@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--text-primary);
+    color: white;
     text-align: center;
     padding: 0 var(--spacing-md);
 }
@@ -42,4 +42,14 @@
     max-width: 600px;
     margin-bottom: var(--spacing-xl);
     line-height: var(--line-height-normal);
+}
+
+/* Botón específico del hero */
+.hero-btn {
+    width: auto;
+    padding: 15px 50px;
+    text-decoration: none;
+    border-radius: 50px;
+    background: var(--primary);
+    color: #ffffff !important;
 }
